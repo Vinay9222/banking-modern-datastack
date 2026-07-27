@@ -55,6 +55,14 @@ conn = psycopg2.connect(
 conn.autocommit = True
 cur = conn.cursor()
 
+print("✅ Connected to PostgreSQL")
+
+cur.execute("SELECT current_database();")
+print("Database:", cur.fetchone()[0])
+
+cur.execute("SELECT COUNT(*) FROM customers;")
+print("Customers before insert:", cur.fetchone()[0])
+
 # -----------------------------
 # Core generation logic (one iteration)
 # -----------------------------

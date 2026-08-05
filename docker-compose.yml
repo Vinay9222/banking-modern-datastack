@@ -20,7 +20,7 @@ services:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,PLAINTEXT_HOST://0.0.0.0:29092
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://host.docker.internal:29092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
@@ -83,9 +83,11 @@ services:
     depends_on:
       - airflow-scheduler
       - airflow-postgres
+      - airflow-init
     environment:
       - AIRFLOW__CORE__LOAD_EXAMPLES=False
       - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${AIRFLOW_DB_USER}:${AIRFLOW_DB_PASSWORD}@airflow-postgres:5432/${AIRFLOW_DB_NAME}
+      - AIRFLOW__WEBSERVER__WEB_SERVER_MASTER_TIMEOUT=300
     volumes:
       - ./docker/dags:/opt/airflow/dags
       - ./docker/logs:/opt/airflow/logs
@@ -94,7 +96,14 @@ services:
       - ./banking_dbt/.dbt:/home/airflow/.dbt
     ports:
       - "8080:8080"
-    command: webserver
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    command: >
+      bash -c "
+      echo 'Waiting for database initialization...' &&
+      until airflow db check; do sleep 2; done &&
+      echo 'Database ready. Starting webserver...' &&
+      airflow webserver"
 
   airflow-scheduler:
     build:
@@ -104,6 +113,7 @@ services:
     restart: always
     depends_on:
       - airflow-postgres
+      - airflow-init
     environment:
       - AIRFLOW__CORE__LOAD_EXAMPLES=False
       - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${AIRFLOW_DB_USER}:${AIRFLOW_DB_PASSWORD}@airflow-postgres:5432/${AIRFLOW_DB_NAME}
@@ -113,7 +123,14 @@ services:
       - ./docker/plugins:/opt/airflow/plugins
       - ./banking_dbt:/opt/airflow/banking_dbt
       - ./banking_dbt/.dbt:/home/airflow/.dbt
-    command: scheduler
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    command: >
+      bash -c "
+      echo 'Waiting for database initialization...' &&
+      until airflow db check; do sleep 2; done &&
+      echo 'Database ready. Starting scheduler...' &&
+      airflow scheduler"
 
 
 
@@ -129,6 +146,26 @@ services:
       - airflow_postgres_data:/var/lib/postgresql/data
     ports:
       - "5433:5432"  # separate from banking-postgres to avoid conflict
+    
+  airflow-init:
+    build:
+      context: .
+      dockerfile: dockerfile-airflow.dockerfile
+    container_name: airflow-init
+    depends_on:
+      - airflow-postgres
+    environment:
+      - AIRFLOW__CORE__LOAD_EXAMPLES=False
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${AIRFLOW_DB_USER}:${AIRFLOW_DB_PASSWORD}@airflow-postgres:5432/${AIRFLOW_DB_NAME}
+    volumes:
+      - ./docker/dags:/opt/airflow/dags
+      - ./docker/logs:/opt/airflow/logs
+      - ./docker/plugins:/opt/airflow/plugins
+      - ./banking_dbt:/opt/airflow/banking_dbt
+      - ./banking_dbt/.dbt:/home/airflow/.dbt
+    command: >
+      bash -c "airflow db init && airflow users create --username admin --firstname Admin --lastname User --role Admin --email admin@example.com --password admin"
+    restart: "no"  
 
 volumes:
   airflow_postgres_data:

@@ -4,12 +4,15 @@ import json
 import pandas as pd
 from datetime import datetime
 import os
+from pathlib import Path
 from dotenv import load_dotenv
 
 # -----------------------------
 # Load secrets from .env
 # -----------------------------
-load_dotenv()
+# load_dotenv()
+env_path = Path(__file__).parent / '.env'
+load_dotenv(dotenv_path=env_path)
 
 # Kafka consumer settings
 consumer = KafkaConsumer(
@@ -24,12 +27,19 @@ consumer = KafkaConsumer(
 )
 
 # MinIO client
+# s3 = boto3.client(
+#     's3',
+#     endpoint_url=os.getenv("MINIO_ENDPOINT"),
+#     aws_access_key_id=os.getenv("MINIO_ACCESS_KEY"),
+#     aws_secret_access_key=os.getenv("MINIO_SECRET_KEY")
+# )
 s3 = boto3.client(
-    's3',
-    endpoint_url=os.getenv("MINIO_ENDPOINT"),
-    aws_access_key_id=os.getenv("MINIO_ACCESS_KEY"),
-    aws_secret_access_key=os.getenv("MINIO_SECRET_KEY")
-)
+        's3',
+        endpoint_url=os.getenv("MINIO_ENDPOINT", "http://localhost:9000"),
+        aws_access_key_id=os.getenv("MINIO_ACCESS_KEY", "minioadmin"),
+        aws_secret_access_key=os.getenv("MINIO_SECRET_KEY", "minioadmin"),
+        region_name='us-east-1'
+    )
 
 bucket = os.getenv("MINIO_BUCKET")
 

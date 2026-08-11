@@ -15,3 +15,6 @@ pandas
 
 #dbt
 dbt-snowflake
+
+# Core Airflow package
+apache-airflow==2.8.1

@@ -1,0 +1,458 @@
+==================== 2026-08-10T11:32:47.967090Z | 019feb72-5acf-7553-b25e-cea1e6336b6c ====================
+11:32:47.975369 [info ]: dbt-fusion 2.0.0-preview.205
+11:32:47.985083 [info ]: Started loading project
+11:32:48.054104 [info ]: Loading ~/.dbt/profiles.yml
+11:32:48.085372 [info ]: Finished loading project [  0.10s]
+11:32:48.091067 [error]: [IoError (dbt1001)]: Profile 'banking_dbt' not found in profiles.yml
+  --> dbt_project.yml:9:10
+11:32:48.780309 [info ]: 
+==================== Execution Summary =====================
+Finished 'debug' with 1 error [813ms]
+==================== 2026-08-10T11:44:45.849109Z | 019feb7d-4f0d-7c40-afb7-899c6ba16157 ====================
+11:44:45.850043 [info ]: dbt-fusion 2.0.0-preview.205
+11:44:45.858752 [info ]: Started loading project
+11:44:45.919286 [info ]: Loading profiles.yml
+11:44:45.947624 [info ]: Finished loading project [  0.09s]
+11:44:45.956045 [info ]: Started debugging
+11:44:45.957178 [info ]: Debugging profile: dev
+11:44:45.957651 [info ]: Debugging dbt version: 2.0.0-preview.205
+11:44:45.958055 [info ]: Debugging platform: windows x86_64 (windows)
+11:44:45.959858 [info ]: Debugging adapter type: snowflake (remote)
+11:44:46.044116 [info ]: Debugging dependencies:
+  git: OK
+11:44:46.052688 [info ]: Debugging connection:
+  "client_session_keep_alive": false,
+  "account": "pm94728.central-india.azure",
+  "user": "vinay",
+  "database": "BANKING",
+  "warehouse": "COMPUTE_WH",
+  "schema": "ANALYSTICS",
+  "role": "ACCOUNTADMIN"
+11:44:48.576889 [info ]: Finished debugging [  2.62s]
+11:44:48.578371 [error]: [AuthenticationFailed (dbt1011)]: dbt was unable to connect to the specified database.
+The following error was returned:
+
+[Snowflake] 390100 (08004): Incorrect username or password was specified. [0acded28-16d4-4d98-9bcd-2dbd77e98be0]
+
+Check your database credentials and try again. For more information, visit:
+https://docs.getdbt.com/docs/core/connect-data-platform/connection-profiles
+11:44:49.747950 [info ]: 
+==================== Execution Summary =====================
+Finished 'debug' with 1 error for target 'dev' [3.9s]
+==================== 2026-08-10T11:48:15.087809Z | 019feb80-8069-7e23-a47e-e72eb3da02b5 ====================
+11:48:15.088395 [info ]: dbt-fusion 2.0.0-preview.205
+11:48:15.089451 [info ]: Started loading project
+11:48:15.099210 [info ]: Loading profiles.yml
+11:48:15.101759 [info ]: Finished loading project [  0.01s]
+11:48:15.102246 [info ]: Started debugging
+11:48:15.102539 [info ]: Debugging profile: dev
+11:48:15.102890 [info ]: Debugging dbt version: 2.0.0-preview.205
+11:48:15.103465 [info ]: Debugging platform: windows x86_64 (windows)
+11:48:15.103903 [info ]: Debugging adapter type: snowflake (remote)
+11:48:15.189936 [info ]: Debugging dependencies:
+  git: OK
+11:48:15.191077 [info ]: Debugging connection:
+  "client_session_keep_alive": false,
+  "account": "pm94728.central-india.azure",
+  "user": "vinay",
+  "database": "BANKING",
+  "warehouse": "COMPUTE_WH",
+  "schema": "ANALYSTICS",
+  "role": "ACCOUNTADMIN"
+11:48:16.407307 [debug]: Query executed on node unknown:
+select 1 as id
+11:48:16.413117 [info ]: Debugging connection test: OK
+11:48:16.413841 [info ]: Debugged All checks passed!
+11:48:16.414622 [info ]: Finished debugging [  1.31s]
+11:48:17.105550 [info ]: 
+==================== Execution Summary =====================
+Finished 'debug' successfully for target 'dev' [2.0s]
+==================== 2026-08-10T12:58:46.080961Z | 019febc1-0fba-7ed0-80c3-96c2eee9b1a9 ====================
+12:58:46.082039 [info ]: dbt-fusion 2.0.0-preview.205
+12:58:46.085747 [info ]: Started loading project
+12:58:46.098701 [info ]: Loading profiles.yml
+12:58:46.129750 [debug]:    Started loading packages
+12:58:46.141221 [debug]:     Loaded [  0.01s] packages
+12:58:46.143688 [info ]: Finished loading project [  0.06s]
+12:58:46.146326 [info ]: Started parsing
+12:58:46.221690 [debug]: Finished parsing models/source.yml [  0.00s]
+12:58:46.226791 [debug]: Finished parsing models/staging/stg_accounts.sql [  0.00s]
+12:58:46.228613 [debug]: Finished parsing models/staging/stg_customers.sql [  0.00s]
+12:58:46.230504 [debug]: Finished parsing models/staging/stg_transactions.sql [  0.00s]
+12:58:46.532737 [warn ]: [UnusedResourceConfigPath (dbt1097)]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 1 unused configuration paths:
+- models.banking_dbt.example
+12:58:46.535981 [info ]: Finished parsing [  0.39s]
+12:58:46.544904 [info ]: Started scheduling
+12:58:46.545267 [info ]: Finished scheduling [  0.00s]
+12:58:46.551713 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "BANKING", schema: "RAW", table: "CUSTOMERS" }) and interval: None
+12:58:46.551845 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "BANKING", schema: "RAW", table: "TRANSACTIONS" }) and interval: None
+12:58:46.551905 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "BANKING", schema: "RAW", table: "ACCOUNTS" }) and interval: None
+12:58:46.578625 [debug]: Requesting license from https://sv179.us1.dbt.com/api/private/accounts/70506183154854/feature-licenses/ with 1 key IDs: ["fusion-prod-2025-11-20"]
+12:58:47.462993 [warn ]: [LicenseError (dbt1068)]: Error loading license from remote server sv179.us1.dbt.com, skipping: Email not verified
+12:58:47.473109 [debug]: Requesting license from https://sv179.us1.dbt.com/api/private/accounts/70506183154854/feature-licenses/ with 1 key IDs: ["fusion-prod-2025-11-20"]
+12:58:48.216650 [debug]: License check failed: Feature not licensed: 'lineage'
+12:58:48.217165 [info ]: Started building task graph
+12:58:48.219799 [info ]: Finished building task graph [  0.00s]
+12:58:49.701793 [debug]: Query executed on node unknown:
+show terse schemas in database BANKING
+    limit 10000
+/* {"app": "dbt", "connection_name": "", "dbt_version": "2.0.0", "profile_name": "banking_dbt", "target_name": "dev"} */
+12:58:49.715860 [info ]: Started rendering (3 nodes)
+12:58:49.904810 [info ]: Started model ANALYSTICS.stg_transactions
+12:58:49.904863 [debug]: Started rendering model ANALYSTICS.stg_transactions
+12:58:49.904938 [info ]: Started model ANALYSTICS.stg_customers
+12:58:49.904966 [debug]: Started rendering model ANALYSTICS.stg_customers
+12:58:49.905027 [info ]: Started model ANALYSTICS.stg_accounts
+12:58:49.905053 [debug]: Started rendering model ANALYSTICS.stg_accounts
+12:58:49.925779 [debug]: Compiled SQL for node model.banking_dbt.stg_transactions at target\compiled\banking_dbt\models\staging\stg_transactions.sql
+12:58:49.926842 [debug]: Finished rendering [  0.02s] model ANALYSTICS.stg_transactions [success]
+12:58:49.927816 [debug]: Compiled SQL for node model.banking_dbt.stg_customers at target\compiled\banking_dbt\models\staging\stg_customers.sql
+12:58:49.928007 [info ]: Started analyzing (3 nodes)
+12:58:49.928505 [debug]: Started analyzing model ANALYSTICS.stg_transactions
+12:58:49.929096 [debug]: Compiled SQL for node model.banking_dbt.stg_accounts at target\compiled\banking_dbt\models\staging\stg_accounts.sql
+12:58:49.928592 [debug]: Finished rendering [  0.02s] model ANALYSTICS.stg_customers [success]
+12:58:49.929510 [debug]: Started analyzing model ANALYSTICS.stg_customers
+12:58:49.929703 [debug]: Finished rendering [  0.02s] model ANALYSTICS.stg_accounts [success]
+12:58:49.930810 [info ]: Finished rendering [  0.21s] (3 nodes, 0 skipped, 0 errors)
+12:58:49.931616 [debug]: Started analyzing model ANALYSTICS.stg_accounts
+12:58:49.951204 [debug]: Finished analyzing [  0.02s] model ANALYSTICS.stg_transactions [success]
+12:58:49.951761 [info ]: Started running (3 nodes)
+12:58:49.952135 [info ]: Started running model ANALYSTICS.stg_transactions
+12:58:49.955448 [debug]: Finished analyzing [  0.02s] model ANALYSTICS.stg_accounts [success]
+12:58:49.955978 [info ]: Started running model ANALYSTICS.stg_accounts
+12:58:49.956033 [debug]: Finished analyzing [  0.03s] model ANALYSTICS.stg_customers [success]
+12:58:49.956464 [info ]: Finished analyzing [  0.03s] (3 nodes, 0 skipped, 0 errors)
+12:58:49.957106 [info ]: Started running model ANALYSTICS.stg_customers
+12:58:50.099201 [debug]: Query executed on node model.banking_dbt.stg_accounts:
+SHOW OBJECTS IN SCHEMA "BANKING"."ANALYSTICS" LIMIT 10000
+12:58:50.111178 [debug]: Writing runtime sql for node "model.banking_dbt.stg_accounts"
+12:58:50.300676 [debug]: Query executed on node model.banking_dbt.stg_transactions:
+SHOW OBJECTS IN SCHEMA "BANKING"."ANALYSTICS" LIMIT 10000
+12:58:50.308610 [debug]: Writing runtime sql for node "model.banking_dbt.stg_transactions"
+12:58:50.349345 [debug]: Query executed on node model.banking_dbt.stg_accounts:
+create or replace   view BANKING.ANALYSTICS.stg_accounts
+  
+  
+  
+  
+  as (
+    
+
+with ranked as (
+    select
+        v:id::string            as account_id,
+        v:customer_id::string   as customer_id,
+        v:account_type::string  as account_type,
+        v:balance::float        as balance,
+        v:currency::string      as currency,
+        v:created_at::timestamp as created_at,
+        current_timestamp       as load_timestamp,
+        row_number() over (
+            partition by v:id::string
+            order by v:created_at desc
+        ) as rn
+    from BANKING.RAW.accounts
+)
+
+select
+    account_id,
+    customer_id,
+    account_type,
+    balance,
+    currency,
+    created_at,
+    load_timestamp
+from ranked
+where rn = 1
+  )
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.stg_accounts", "profile_name": "banking_dbt", "target_name": "dev"} */
+12:58:50.358727 [info ]: Finished running [  0.40s] model ANALYSTICS.stg_accounts [success]
+12:58:50.359262 [info ]:  Succeeded [  0.45s] model ANALYSTICS.stg_accounts (view)
+12:58:50.544146 [debug]: Query executed on node model.banking_dbt.stg_transactions:
+create or replace   view BANKING.ANALYSTICS.stg_transactions
+  
+  
+  
+  
+  as (
+    
+
+SELECT
+    v:id::string                 AS transaction_id,
+    v:account_id::string         AS account_id,
+    v:amount::float              AS amount,
+    v:txn_type::string           AS transaction_type,
+    v:related_account_id::string AS related_account_id,
+    v:status::string             AS status,
+    v:created_at::timestamp      AS transaction_time,
+    CURRENT_TIMESTAMP            AS load_timestamp
+FROM BANKING.RAW.transactions
+  )
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.stg_transactions", "profile_name": "banking_dbt", "target_name": "dev"} */
+12:58:50.547935 [info ]: Finished running [  0.60s] model ANALYSTICS.stg_transactions [success]
+12:58:50.548520 [info ]:  Succeeded [  0.64s] model ANALYSTICS.stg_transactions (view)
+12:58:50.993081 [debug]: Query executed on node model.banking_dbt.stg_customers:
+SHOW OBJECTS IN SCHEMA "BANKING"."ANALYSTICS" LIMIT 10000
+12:58:50.996959 [debug]: Writing runtime sql for node "model.banking_dbt.stg_customers"
+12:58:51.184926 [debug]: Query executed on node model.banking_dbt.stg_customers:
+create or replace   view BANKING.ANALYSTICS.stg_customers
+  
+  
+  
+  
+  as (
+    
+
+with parsed as (
+    select
+        v:id::string as customer_id,
+        v:first_name::string as first_name,
+        v:last_name::string as last_name,
+        v:email::string as email,
+        v:created_at::timestamp as created_time,
+        v:updated_at::timestamp as updated_time
+    from
+        BANKING.RAW.customers
+),
+
+ranked as (
+    select
+        customer_id,
+        first_name,
+        last_name,
+        email,
+        created_time,
+        updated_time,
+        rank() over(partition by customer_id order by created_time) as rnk
+    from
+        parsed
+)
+
+select 
+    customer_id,
+    first_name,
+    last_name,
+    email,
+    created_time,
+    updated_time
+from ranked
+where rnk = 1
+  )
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.stg_customers", "profile_name": "banking_dbt", "target_name": "dev"} */
+12:58:51.188027 [info ]: Finished running [  1.23s] model ANALYSTICS.stg_customers [success]
+12:58:51.188517 [info ]: Finished running [  1.24s] (3 nodes, 0 skipped, 0 errors)
+12:58:51.189194 [info ]:  Succeeded [  1.28s] model ANALYSTICS.stg_customers (view)
+12:58:51.397770 [info ]: 
+==================== Execution Summary =====================
+Finished 'run' with 2 warnings for target 'dev' [5.3s]
+Processed: 3 models
+Summary: 3 total | 3 success
+==================== 2026-08-10T13:08:40.348611Z | 019febca-2114-7f93-b30b-111be65a78b4 ====================
+13:08:40.349043 [info ]: dbt-fusion 2.0.0-preview.205
+13:08:40.351274 [info ]: Started loading project
+13:08:40.364532 [info ]: Loading profiles.yml
+13:08:40.392670 [debug]:    Started loading packages
+13:08:40.398638 [debug]:     Loaded [  0.01s] packages
+13:08:40.400561 [info ]: Finished loading project [  0.05s]
+13:08:40.401894 [info ]: Started parsing
+13:08:40.488434 [debug]: Finished parsing models/source.yml [  0.00s]
+13:08:40.494391 [debug]: Finished parsing snapshots\accounts_snapshot.sql [  0.00s]
+13:08:40.495276 [debug]: Finished parsing snapshots\customers.snapshot.sql [  0.00s]
+13:08:40.504128 [debug]: Finished parsing models/staging/stg_accounts.sql [  0.00s]
+13:08:40.505161 [debug]: Finished parsing models/staging/stg_customers.sql [  0.00s]
+13:08:40.507624 [debug]: Finished parsing models/staging/stg_transactions.sql [  0.00s]
+13:08:40.768087 [warn ]: [UnusedResourceConfigPath (dbt1097)]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 1 unused configuration paths:
+- models.banking_dbt.example
+13:08:40.770230 [info ]: Finished parsing [  0.37s]
+13:08:40.772360 [info ]: Started scheduling
+13:08:40.772627 [info ]: Finished scheduling [  0.00s]
+13:08:40.780922 [debug]: Initializing schema store with entry: Selected("snapshot.banking_dbt.accounts_snapshot") and interval: None
+13:08:40.781084 [debug]: Initializing schema store with entry: Selected("snapshot.banking_dbt.customers_snapshot") and interval: None
+13:08:40.781146 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "BANKING", schema: "ANALYSTICS", table: "STG_CUSTOMERS" }) and interval: None
+13:08:40.781205 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "BANKING", schema: "ANALYSTICS", table: "STG_ACCOUNTS" }) and interval: None
+13:08:40.814731 [debug]: Requesting license from https://sv179.us1.dbt.com/api/private/accounts/70506183154854/feature-licenses/ with 1 key IDs: ["fusion-prod-2025-11-20"]
+13:08:41.563205 [warn ]: [LicenseError (dbt1068)]: Error loading license from remote server sv179.us1.dbt.com, skipping: Email not verified
+13:08:41.573110 [debug]: Requesting license from https://sv179.us1.dbt.com/api/private/accounts/70506183154854/feature-licenses/ with 1 key IDs: ["fusion-prod-2025-11-20"]
+13:08:42.325757 [debug]: License check failed: Feature not licensed: 'lineage'
+13:08:42.328445 [info ]: Started building task graph
+13:08:42.328839 [info ]: Finished building task graph [  0.00s]
+13:08:43.352909 [debug]: Query executed on node unknown:
+show terse schemas in database BANKING
+    limit 10000
+/* {"app": "dbt", "connection_name": "", "dbt_version": "2.0.0", "profile_name": "banking_dbt", "target_name": "dev"} */
+13:08:43.473866 [debug]: Query executed on node unknown:
+create schema if not exists BANKING.ANALYTICS
+/* {"app": "dbt", "connection_name": "", "dbt_version": "2.0.0", "profile_name": "banking_dbt", "target_name": "dev"} */
+13:08:43.474160 [info ]: Started rendering (2 nodes)
+13:08:43.474564 [info ]: Started snapshot ANALYTICS.customers_snapshot
+13:08:43.474588 [debug]: Started rendering snapshot ANALYTICS.customers_snapshot
+13:08:43.474642 [info ]: Started snapshot ANALYTICS.accounts_snapshot
+13:08:43.474663 [debug]: Started rendering snapshot ANALYTICS.accounts_snapshot
+13:08:43.480797 [debug]: Compiled SQL for node snapshot.banking_dbt.customers_snapshot at target\compiled\banking_dbt\snapshots\customers.snapshot.sql\customers_snapshot.sql
+13:08:43.481828 [debug]: Compiled SQL for node snapshot.banking_dbt.accounts_snapshot at target\compiled\banking_dbt\snapshots\accounts_snapshot.sql\accounts_snapshot.sql
+13:08:43.481277 [debug]: Finished rendering [  0.01s] snapshot ANALYTICS.customers_snapshot [success]
+13:08:43.482253 [info ]: Started analyzing (2 nodes)
+13:08:43.482597 [debug]: Started analyzing snapshot ANALYTICS.customers_snapshot
+13:08:43.482676 [debug]: Finished rendering [  0.01s] snapshot ANALYTICS.accounts_snapshot [success]
+13:08:43.483381 [info ]: Finished rendering [  0.01s] (2 nodes, 0 skipped, 0 errors)
+13:08:43.484465 [debug]: Started analyzing snapshot ANALYTICS.accounts_snapshot
+13:08:43.492907 [debug]: Finished analyzing [  0.01s] snapshot ANALYTICS.accounts_snapshot [success]
+13:08:43.493393 [info ]: Started running (2 nodes)
+13:08:43.493645 [info ]: Started running snapshot ANALYTICS.accounts_snapshot
+13:08:43.493706 [debug]: Finished analyzing [  0.01s] snapshot ANALYTICS.customers_snapshot [success]
+13:08:43.494214 [info ]: Finished analyzing [  0.01s] (2 nodes, 0 skipped, 0 errors)
+13:08:43.495498 [info ]: Started running snapshot ANALYTICS.customers_snapshot
+13:08:43.658564 [debug]: Query executed on node snapshot.banking_dbt.accounts_snapshot:
+SHOW OBJECTS IN SCHEMA "BANKING"."ANALYTICS" LIMIT 10000
+13:08:43.784695 [debug]: Query executed on node snapshot.banking_dbt.customers_snapshot:
+SHOW OBJECTS IN SCHEMA "BANKING"."ANALYTICS" LIMIT 10000
+13:08:43.838015 [debug]: Query executed on node snapshot.banking_dbt.accounts_snapshot:
+select * from (
+        
+    
+
+    select *,
+        md5(coalesce(cast(account_id as varchar ), '')
+         || '|' || coalesce(cast(to_timestamp_ntz(convert_timezone('UTC', current_timestamp())) as varchar ), '')
+        ) as dbt_scd_id,
+        to_timestamp_ntz(convert_timezone('UTC', current_timestamp())) as dbt_updated_at,
+        to_timestamp_ntz(convert_timezone('UTC', current_timestamp())) as dbt_valid_from,
+        
+  
+  coalesce(nullif(to_timestamp_ntz(convert_timezone('UTC', current_timestamp())), to_timestamp_ntz(convert_timezone('UTC', current_timestamp()))), null)
+  as dbt_valid_to
+from (
+        
+
+
+SELECT * FROM BANKING.ANALYSTICS.stg_accounts
+
+
+    ) sbq
+
+
+
+    ) as __dbt_sbq
+    where false
+    limit 0
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "snapshot.banking_dbt.accounts_snapshot", "profile_name": "banking_dbt", "target_name": "dev"} */
+13:08:43.921951 [debug]: Query executed on node snapshot.banking_dbt.accounts_snapshot:
+select * from (
+        select to_timestamp_ntz(convert_timezone('UTC', current_timestamp())) as dbt_snapshot_time
+    ) as __dbt_sbq
+    where false
+    limit 0
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "snapshot.banking_dbt.accounts_snapshot", "profile_name": "banking_dbt", "target_name": "dev"} */
+13:08:43.924900 [debug]: Writing runtime sql for node "snapshot.banking_dbt.accounts_snapshot"
+13:08:44.525629 [debug]: Query executed on node snapshot.banking_dbt.customers_snapshot:
+select * from (
+        
+    
+
+    select *,
+        md5(coalesce(cast(customer_id as varchar ), '')
+         || '|' || coalesce(cast(to_timestamp_ntz(convert_timezone('UTC', current_timestamp())) as varchar ), '')
+        ) as dbt_scd_id,
+        to_timestamp_ntz(convert_timezone('UTC', current_timestamp())) as dbt_updated_at,
+        to_timestamp_ntz(convert_timezone('UTC', current_timestamp())) as dbt_valid_from,
+        
+  
+  coalesce(nullif(to_timestamp_ntz(convert_timezone('UTC', current_timestamp())), to_timestamp_ntz(convert_timezone('UTC', current_timestamp()))), null)
+  as dbt_valid_to
+from (
+        
+
+SELECT * FROM BANKING.ANALYSTICS.stg_customers
+
+    ) sbq
+
+
+
+    ) as __dbt_sbq
+    where false
+    limit 0
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "snapshot.banking_dbt.customers_snapshot", "profile_name": "banking_dbt", "target_name": "dev"} */
+13:08:44.987620 [debug]: Query executed on node snapshot.banking_dbt.accounts_snapshot:
+create or replace transient  table BANKING.ANALYTICS.accounts_snapshot
+    
+    
+    
+    
+    as (
+    
+
+    select *,
+        md5(coalesce(cast(account_id as varchar ), '')
+         || '|' || coalesce(cast(to_timestamp_ntz(convert_timezone('UTC', current_timestamp())) as varchar ), '')
+        ) as dbt_scd_id,
+        to_timestamp_ntz(convert_timezone('UTC', current_timestamp())) as dbt_updated_at,
+        to_timestamp_ntz(convert_timezone('UTC', current_timestamp())) as dbt_valid_from,
+        
+  
+  coalesce(nullif(to_timestamp_ntz(convert_timezone('UTC', current_timestamp())), to_timestamp_ntz(convert_timezone('UTC', current_timestamp()))), null)
+  as dbt_valid_to
+from (
+        
+
+
+SELECT * FROM BANKING.ANALYSTICS.stg_accounts
+
+
+    ) sbq
+
+
+
+    )
+
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "snapshot.banking_dbt.accounts_snapshot", "profile_name": "banking_dbt", "target_name": "dev"} */
+13:08:45.000340 [info ]: Finished running [  1.51s] snapshot ANALYTICS.accounts_snapshot [success]
+13:08:45.000965 [info ]:  Succeeded [  1.52s] snapshot ANALYTICS.accounts_snapshot (snapshot)
+13:08:45.009970 [debug]: Query executed on node snapshot.banking_dbt.customers_snapshot:
+select * from (
+        select to_timestamp_ntz(convert_timezone('UTC', current_timestamp())) as dbt_snapshot_time
+    ) as __dbt_sbq
+    where false
+    limit 0
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "snapshot.banking_dbt.customers_snapshot", "profile_name": "banking_dbt", "target_name": "dev"} */
+13:08:45.012234 [debug]: Writing runtime sql for node "snapshot.banking_dbt.customers_snapshot"
+13:08:46.569356 [debug]: Query executed on node snapshot.banking_dbt.customers_snapshot:
+create or replace transient  table BANKING.ANALYTICS.customers_snapshot
+    
+    
+    
+    
+    as (
+    
+
+    select *,
+        md5(coalesce(cast(customer_id as varchar ), '')
+         || '|' || coalesce(cast(to_timestamp_ntz(convert_timezone('UTC', current_timestamp())) as varchar ), '')
+        ) as dbt_scd_id,
+        to_timestamp_ntz(convert_timezone('UTC', current_timestamp())) as dbt_updated_at,
+        to_timestamp_ntz(convert_timezone('UTC', current_timestamp())) as dbt_valid_from,
+        
+  
+  coalesce(nullif(to_timestamp_ntz(convert_timezone('UTC', current_timestamp())), to_timestamp_ntz(convert_timezone('UTC', current_timestamp()))), null)
+  as dbt_valid_to
+from (
+        
+
+SELECT * FROM BANKING.ANALYSTICS.stg_customers
+
+    ) sbq
+
+
+
+    )
+
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "snapshot.banking_dbt.customers_snapshot", "profile_name": "banking_dbt", "target_name": "dev"} */
+13:08:46.575123 [info ]: Finished running [  3.08s] snapshot ANALYTICS.customers_snapshot [success]
+13:08:46.575770 [info ]: Finished running [  3.08s] (2 nodes, 0 skipped, 0 errors)
+13:08:46.576537 [info ]:  Succeeded [  3.10s] snapshot ANALYTICS.customers_snapshot (snapshot)
+13:08:46.773320 [info ]: 
+==================== Execution Summary =====================
+Finished 'snapshot' with 2 warnings for target 'dev' [6.4s]
+Processed: 2 snapshots
+Summary: 2 total | 2 success

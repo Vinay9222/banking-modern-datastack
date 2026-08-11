@@ -1,0 +1,14 @@
+banking_dbt:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: "pm94728.central-india.azure"
+      user: "vinay"
+      password: "Vinay1234567890"
+      role: ACCOUNTADMIN
+      database: "BANKING"
+      warehouse: "COMPUTE_WH"
+      schema: "ANALYSTICS"
+      threads: 4
+      client_session_keep_alive: False

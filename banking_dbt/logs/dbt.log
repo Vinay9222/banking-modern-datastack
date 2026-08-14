@@ -2256,3 +2256,97 @@ Runtime Error
 [0m05:01:13.691613 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e2c1bad4f20>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e2c1bb563f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e2c1b9209e0>]}
 [0m05:01:13.694330 [debug] [MainThread]: Flushing usage events
 [0m05:01:15.036546 [debug] [MainThread]: An error was encountered while trying to flush usage events
+==================== 2026-08-14T12:49:38.616489Z | 01a00052-252b-7962-a06f-5ca5e724979c ====================
+12:49:38.618804 [info ]: dbt-fusion 2.0.0-preview.205
+12:49:38.629922 [info ]: Started loading project
+12:49:38.690567 [info ]: Loading profiles.yml
+12:49:38.786088 [debug]:    Started loading packages
+12:49:38.809673 [warn ]: [UnusedConfigKey (dbt1060)]: Ignored unexpected key 'banking_dbt'. Try '+banking_dbt' instead. YAML path: 'models.banking_dbt'.
+  --> dbt_project.yml:32:15
+12:49:38.826098 [debug]:     Loaded [  0.04s] packages
+12:49:38.847301 [info ]: Finished loading project [  0.22s]
+12:49:38.861150 [info ]: Started parsing
+12:49:39.014351 [debug]: Finished parsing models/source.yml [  0.02s]
+12:49:39.067253 [debug]: Finished parsing snapshots\accounts_snapshot.sql [  0.04s]
+12:49:39.068298 [debug]: Finished parsing snapshots\customers.snapshot.sql [  0.00s]
+12:49:39.089716 [debug]: Finished parsing models/marts/dimensions/dim_accounts.sql [  0.01s]
+12:49:39.091310 [debug]: Finished parsing models/marts/dimensions/dim_customers.sql [  0.00s]
+12:49:39.093630 [debug]: Finished parsing models/marts/facts/fact_transactions.sql [  0.00s]
+12:49:39.095940 [debug]: Finished parsing models/staging/stg_accounts.sql [  0.00s]
+12:49:39.097037 [debug]: Finished parsing models/staging/stg_customers.sql [  0.00s]
+12:49:39.098101 [debug]: Finished parsing models/staging/stg_transactions.sql [  0.00s]
+12:49:39.434141 [info ]: Finished parsing [  0.57s]
+12:49:39.443753 [info ]: Started scheduling
+12:49:39.454749 [info ]: Finished scheduling [  0.01s]
+12:49:39.473263 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "BANKING", schema: "ANALYSTICS", table: "STG_TRANSACTIONS" }) and interval: None
+12:49:39.473765 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "BANKING", schema: "ANALYSTICS", table: "STG_ACCOUNTS" }) and interval: None
+12:49:40.539015 [debug]: Requesting license from https://sv179.us1.dbt.com/api/private/accounts/70506183154854/feature-licenses/ with 1 key IDs: ["fusion-prod-2025-11-20"]
+12:49:41.410932 [warn ]: [LicenseError (dbt1068)]: Error loading license from remote server sv179.us1.dbt.com, skipping: Email not verified
+12:49:41.422885 [debug]: Requesting license from https://sv179.us1.dbt.com/api/private/accounts/70506183154854/feature-licenses/ with 1 key IDs: ["fusion-prod-2025-11-20"]
+12:49:42.333239 [debug]: License check failed: Feature not licensed: 'lineage'
+12:49:42.343031 [debug]:    Started downloading relations (1 items)
+12:49:45.949727 [debug]: Query executed on node unknown:
+SHOW OBJECTS IN SCHEMA "BANKING"."ANALYSTICS" LIMIT 10000
+12:49:46.073447 [debug]:   Finished [  3.73s] downloading relations (1 items)
+12:49:46.097069 [info ]: Started building task graph
+12:49:46.109474 [info ]: Finished building task graph [  0.01s]
+12:49:46.531905 [debug]: Query executed on node unknown:
+show terse schemas in database BANKING
+    limit 10000
+/* {"app": "dbt", "connection_name": "", "dbt_version": "2.0.0", "profile_name": "banking_dbt", "target_name": "dev"} */
+12:49:46.540331 [info ]: Started rendering (1 nodes)
+12:49:46.543308 [info ]: Started model ANALYSTICS.fact_transactions
+12:49:46.543362 [debug]: Started rendering model ANALYSTICS.fact_transactions
+12:49:46.601107 [debug]: Compiled SQL for node model.banking_dbt.fact_transactions at target\compiled\banking_dbt\models\marts\facts\fact_transactions.sql
+12:49:46.604839 [debug]: Finished rendering [  0.06s] model ANALYSTICS.fact_transactions [success]
+12:49:46.605350 [info ]: Finished rendering [  0.07s] (1 nodes, 0 skipped, 0 errors)
+12:49:46.607697 [info ]: Started analyzing (1 nodes)
+12:49:46.607965 [debug]: Started analyzing model ANALYSTICS.fact_transactions
+12:49:46.693163 [debug]: Finished analyzing [  0.09s] model ANALYSTICS.fact_transactions [success]
+12:49:46.693572 [info ]: Finished analyzing [  0.09s] (1 nodes, 0 skipped, 0 errors)
+12:49:46.694752 [info ]: Started running (1 nodes)
+12:49:46.694985 [info ]: Started running model ANALYSTICS.fact_transactions
+12:49:46.718596 [debug]: Invalid value for on_schema_change (None) specified. Setting default value of ignore.
+12:49:46.723463 [debug]: Writing runtime sql for node "model.banking_dbt.fact_transactions"
+12:49:48.291883 [debug]: Query executed on node model.banking_dbt.fact_transactions:
+create or replace transient  table BANKING.ANALYSTICS.fact_transactions
+    
+    
+    
+    
+    as (
+
+
+  
+    
+    SELECT
+        t.transaction_id,
+        t.account_id,
+        a.customer_id,
+        t.amount,
+        t.related_account_id,
+        t.status,
+        t.transaction_type,
+        t.transaction_time,
+        CURRENT_TIMESTAMP AS load_timestamp
+    FROM BANKING.ANALYSTICS.stg_transactions t
+    LEFT JOIN BANKING.ANALYSTICS.stg_accounts a
+        ON t.account_id = a.account_id
+    
+    
+    )
+
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.fact_transactions", "profile_name": "banking_dbt", "target_name": "dev"} */
+12:49:48.293246 [debug]: Applying DROP to: BANKING.ANALYSTICS.fact_transactions__dbt_tmp
+12:49:48.381751 [debug]: Query executed on node model.banking_dbt.fact_transactions:
+drop view if exists BANKING.ANALYSTICS.fact_transactions__dbt_tmp cascade
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.fact_transactions", "profile_name": "banking_dbt", "target_name": "dev"} */
+12:49:48.389297 [info ]: Finished running [  1.69s] model ANALYSTICS.fact_transactions [success]
+12:49:48.389880 [info ]: Finished running [  1.70s] (1 nodes, 0 skipped, 0 errors)
+12:49:48.390581 [info ]:  Succeeded [  1.84s] model ANALYSTICS.fact_transactions (incremental)
+12:49:48.465526 [info ]: New version available 2.0.0-preview.209 (run `dbt system update`)
+12:49:48.616187 [info ]: 
+==================== Execution Summary =====================
+Finished 'run' with 2 warnings for target 'dev' [10.0s]
+Processed: 1 model
+Summary: 1 total | 1 success

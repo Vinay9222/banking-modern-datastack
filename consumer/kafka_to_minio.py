@@ -1,11 +1,13 @@
-import boto3
-from kafka import KafkaConsumer
 import json
+
 # import pandas as pd
 import os
-from pathlib import Path
-from dotenv import load_dotenv
 from datetime import datetime, timezone
+from pathlib import Path
+
+import boto3
+from dotenv import load_dotenv
+from kafka import KafkaConsumer
 
 # -----------------------------
 # Load secrets from .env
@@ -58,7 +60,7 @@ def write_to_minio(table_name, records):
     # df.to_parquet(file_path, engine='fastparquet', index=False)
     # Line 58
     s3_key = f'{table_name}/date={date_str}/{table_name}_{datetime.now(timezone.utc).strftime("%H%M%S%f")}.parquet'
-    s3_key = f'{table_name}/date={date_str}/{table_name}_{datetime.now().strftime("%H%M%S%f")}.parquet'
+    # s3_key = f'{table_name}/date={date_str}/{table_name}_{datetime.now().strftime("%H%M%S%f")}.parquet'
     s3.upload_file(file_path, bucket, s3_key)
     os.remove(file_path)
     print(f'✅ Uploaded {len(records)} records to s3://{bucket}/{s3_key}')

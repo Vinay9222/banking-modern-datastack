@@ -13,3 +13,7 @@ SELECT
 FROM {{ ref('stg_transactions') }} t
 LEFT JOIN {{ ref('stg_accounts') }} a
     ON t.account_id = a.account_id
+
+{% if is_incremental() %}
+WHERE t.transaction_time > (SELECT COALESCE(MAX(transaction_time), '1970-01-01') FROM {{ this }})
+{% endif %}

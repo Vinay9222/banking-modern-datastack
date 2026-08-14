@@ -1,11 +1,13 @@
-import boto3
-from kafka import KafkaConsumer
 import json
-import pandas as pd
-from datetime import datetime
+
+# import pandas as pd
 import os
+from datetime import datetime, timezone
 from pathlib import Path
+
+import boto3
 from dotenv import load_dotenv
+from kafka import KafkaConsumer
 
 # -----------------------------
 # Load secrets from .env
@@ -51,11 +53,14 @@ if bucket not in [b['Name'] for b in s3.list_buckets()['Buckets']]:
 def write_to_minio(table_name, records):
     if not records:
         return
-    df = pd.DataFrame(records)
-    date_str = datetime.now().strftime('%Y-%m-%d')
+    # df = pd.DataFrame(records)
+    # date_str = datetime.now().strftime('%Y-%m-%d')
+    date_str = datetime.now(timezone.utc).strftime('%Y-%m-%d')
     file_path = f'{table_name}_{date_str}.parquet'
-    df.to_parquet(file_path, engine='fastparquet', index=False)
-    s3_key = f'{table_name}/date={date_str}/{table_name}_{datetime.now().strftime("%H%M%S%f")}.parquet'
+    # df.to_parquet(file_path, engine='fastparquet', index=False)
+    # Line 58
+    s3_key = f'{table_name}/date={date_str}/{table_name}_{datetime.now(timezone.utc).strftime("%H%M%S%f")}.parquet'
+    # s3_key = f'{table_name}/date={date_str}/{table_name}_{datetime.now().strftime("%H%M%S%f")}.parquet'
     s3.upload_file(file_path, bucket, s3_key)
     os.remove(file_path)
     print(f'✅ Uploaded {len(records)} records to s3://{bucket}/{s3_key}')

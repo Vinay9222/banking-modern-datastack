@@ -29,5 +29,4 @@ with DAG(
         bash_command="cd /opt/airflow/banking_dbt && dbt run --select marts --profiles-dir /home/airflow/.dbt"
     )
 
-
-    dbt_snapshot
+    dbt_snapshot >> dbt_run_marts

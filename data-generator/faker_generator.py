@@ -1,76 +1,63 @@
 import argparse
+import logging
 import os
 import random
 import sys
 import time
 from decimal import ROUND_DOWN, Decimal
+from pathlib import Path
 
-import psycopg2
 from dotenv import load_dotenv
-from faker import Faker
 
-load_dotenv()
+# ---------------------------------------------------------------------
+# Logging Configuration
+# ---------------------------------------------------------------------
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s"
+)
+logger = logging.getLogger("data_generator")
 
-# -----------------------------
-# Project configuration (safe to hardcode here)
-# -----------------------------
+# ---------------------------------------------------------------------
+# Environment Configuration
+# ---------------------------------------------------------------------
+local_env = Path(__file__).parent / ".env"
+root_env = Path(__file__).parent.parent / ".env"
+
+if local_env.exists():
+    load_dotenv(dotenv_path=local_env)
+elif root_env.exists():
+    load_dotenv(dotenv_path=root_env)
+else:
+    load_dotenv()
+
+POSTGRES_HOST = os.getenv("POSTGRES_HOST", "localhost")
+POSTGRES_PORT = int(os.getenv("POSTGRES_PORT", "5432"))
+POSTGRES_DB = os.getenv("POSTGRES_DB", "banking")
+POSTGRES_USER = os.getenv("POSTGRES_USER", "postgres")
+POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD", "postgres")
+
+# ---------------------------------------------------------------------
+# Generator Parameters
+# ---------------------------------------------------------------------
 NUM_CUSTOMERS = 10
 ACCOUNTS_PER_CUSTOMER = 2
 NUM_TRANSACTIONS = 50
 MAX_TXN_AMOUNT = 1000.00
 CURRENCY = "USD"
-
-# Non-zero initial balances
 INITIAL_BALANCE_MIN = Decimal("10.00")
 INITIAL_BALANCE_MAX = Decimal("1000.00")
-
-# Loop config
-DEFAULT_LOOP = True
 SLEEP_SECONDS = 2
 
-# CLI override (run once mode)
-parser = argparse.ArgumentParser(description="Run fake data generator")
-parser.add_argument("--once", action="store_true", help="Run a single iteration and exit")
-args = parser.parse_args()
-LOOP = not args.once and DEFAULT_LOOP
-
-# -----------------------------
-# Helpers
-# -----------------------------
-fake = Faker()
 
 def random_money(min_val: Decimal, max_val: Decimal) -> Decimal:
+    """Generate a rounded monetary Decimal value."""
     val = Decimal(str(random.uniform(float(min_val), float(max_val))))
     return val.quantize(Decimal("0.01"), rounding=ROUND_DOWN)
 
-print("HOST:", os.getenv("POSTGRES_HOST"))
-print("USER:", os.getenv("POSTGRES_USER"))
-print("PASSWORD:", repr(os.getenv("POSTGRES_PASSWORD")))  # repr shows if it's None or empty string
-# -----------------------------
-# Connect to Postgres
-# -----------------------------
-conn = psycopg2.connect(
-    host=os.getenv("POSTGRES_HOST"),
-    port=os.getenv("POSTGRES_PORT"),
-    dbname=os.getenv("POSTGRES_DB"),
-    user=os.getenv("POSTGRES_USER"),
-    password=os.getenv("POSTGRES_PASSWORD"),
-)
-conn.autocommit = True
-cur = conn.cursor()
 
-print("✅ Connected to PostgreSQL")
-
-cur.execute("SELECT current_database();")
-print("Database:", cur.fetchone()[0])
-
-cur.execute("SELECT COUNT(*) FROM customers;")
-print("Customers before insert:", cur.fetchone()[0])
-
-# -----------------------------
-# Core generation logic (one iteration)
-# -----------------------------
-def run_iteration():
+def run_iteration(cur, fake) -> None:
+    """Generate a single batch of customers, accounts, and transactions."""
     customers = []
     # 1. Generate customers
     for _ in range(NUM_CUSTOMERS):
@@ -92,7 +79,8 @@ def run_iteration():
             account_type = random.choice(["SAVINGS", "CHECKING"])
             initial_balance = random_money(INITIAL_BALANCE_MIN, INITIAL_BALANCE_MAX)
             cur.execute(
-                "INSERT INTO accounts (customer_id, account_type, balance, currency) VALUES (%s, %s, %s, %s) RETURNING id",
+                "INSERT INTO accounts (customer_id, account_type, balance, currency) "
+                "VALUES (%s, %s, %s, %s) RETURNING id",
                 (customer_id, account_type, initial_balance, CURRENCY),
             )
             account_id = cur.fetchone()[0]
@@ -109,30 +97,69 @@ def run_iteration():
             related_account = random.choice([a for a in accounts if a != account_id])
 
         cur.execute(
-            "INSERT INTO transactions (account_id, txn_type, amount, related_account_id, status) VALUES (%s, %s, %s, %s, 'COMPLETED')",
+            "INSERT INTO transactions (account_id, txn_type, amount, related_account_id, status) "
+            "VALUES (%s, %s, %s, %s, 'COMPLETED')",
             (account_id, txn_type, amount, related_account),
         )
 
-    print(f"✅ Generated {len(customers)} customers, {len(accounts)} accounts, {NUM_TRANSACTIONS} transactions.")
+    logger.info(
+        "Generated %d customers, %d accounts, and %d transactions.",
+        len(customers),
+        len(accounts),
+        NUM_TRANSACTIONS,
+    )
 
-# -----------------------------
-# Main loop
-# -----------------------------
-try:
-    iteration = 0
-    while True:
-        iteration += 1
-        print(f"\n--- Iteration {iteration} started ---")
-        run_iteration()
-        print(f"--- Iteration {iteration} finished ---")
-        if not LOOP:
-            break
-        time.sleep(SLEEP_SECONDS)
 
-except KeyboardInterrupt:
-    print("\nInterrupted by user. Exiting gracefully...")
+def main():
+    try:
+        from faker import Faker
+        import psycopg2
+    except ImportError as e:
+        logger.error("Missing dependency: %s. Run: pip install -r requirements.txt", e)
+        sys.exit(1)
 
-finally:
-    cur.close()
-    conn.close()
-    sys.exit(0)
+    parser = argparse.ArgumentParser(description="Banking Mock Data Generator for PostgreSQL")
+    parser.add_argument("--once", action="store_true", help="Run a single iteration and exit")
+    parser.add_argument("--interval", type=int, default=SLEEP_SECONDS, help="Sleep interval in seconds between batches")
+    args = parser.parse_args()
+
+    fake = Faker()
+
+    logger.info("Connecting to PostgreSQL at %s:%d/%s...", POSTGRES_HOST, POSTGRES_PORT, POSTGRES_DB)
+    try:
+        conn = psycopg2.connect(
+            host=POSTGRES_HOST,
+            port=POSTGRES_PORT,
+            dbname=POSTGRES_DB,
+            user=POSTGRES_USER,
+            password=POSTGRES_PASSWORD,
+        )
+        conn.autocommit = True
+        cur = conn.cursor()
+    except Exception as err:
+        logger.error("Failed to connect to PostgreSQL: %s", err)
+        sys.exit(1)
+
+    logger.info("Connected successfully to PostgreSQL database: %s", POSTGRES_DB)
+
+    try:
+        iteration = 0
+        while True:
+            iteration += 1
+            logger.info("--- Batch Iteration %d started ---", iteration)
+            run_iteration(cur, fake)
+            logger.info("--- Batch Iteration %d finished ---", iteration)
+
+            if args.once:
+                break
+            time.sleep(args.interval)
+
+    except KeyboardInterrupt:
+        logger.info("Interrupted by user. Exiting gracefully...")
+    finally:
+        cur.close()
+        conn.close()
+
+
+if __name__ == "__main__":
+    main()

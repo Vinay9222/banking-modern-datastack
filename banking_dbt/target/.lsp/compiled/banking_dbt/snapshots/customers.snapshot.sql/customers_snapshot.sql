@@ -1,3 +1,0 @@
-
-
-SELECT * FROM BANKING.ANALYSTICS.stg_customers

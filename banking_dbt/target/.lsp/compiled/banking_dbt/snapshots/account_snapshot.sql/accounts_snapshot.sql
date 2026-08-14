@@ -1,5 +1,0 @@
-
-
-
-SELECT * FROM BANKING.ANALYSTICS.stg_accounts
-

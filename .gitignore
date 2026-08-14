@@ -1,26 +1,79 @@
-# GitHub Actions cache
-/.github/.cache
+# =====================================================================
+# Git Ignore Configuration - Banking Modern Data Stack
+# =====================================================================
 
-# Docker cache
+# Environment Variables & Secrets
+.env
+*.env
+.env.*
+!.env.example
+docker/dags/.env
+consumer/.env
+data-generator/.env
+kafka-debezium/.env
+
+# Python & Virtual Environments
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Docker & Database / Storage Local Mounts
 docker/logs/
-docker/minio/
+docker/minio/data/
+docker/postgres/data/
 docker/plugins/
-docker/postgres/
+postgres_data/
+airflow_postgres_data/
+docker-compose.override.yml
 
-# DBT cache
+# Logs & Temporary Files
+logs/
+*.log
+*.tmp
+/tmp/minio_downloads/
+
+# dbt Artifacts & Cache
+banking_dbt/target/
+banking_dbt/dbt_packages/
+banking_dbt/logs/
+banking_dbt/.user.yml
 banking_dbt/.dbt/
 banking_dbt/analyses/
-banking_dbt/logs/
-banking_dbt/macros/
 banking_dbt/seeds/
-banking_dbt/target/
 banking_dbt/tests/
 
-.env
-__pycache__/
-*.pyc
+# GitHub Actions Cache
+/.github/.cache
+
+# IDEs & System Files
 .vscode/
 .idea/
+*.swp
+*.swo
 .DS_Store
-docker-compose.override.yml
-logs/
+Thumbs.db

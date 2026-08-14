@@ -1,11 +1,11 @@
 banking_dbt:
-  target: "{{ env_var('DBT_TARGET', 'dev') }}"
+  target: dev
   outputs:
     dev:
       type: snowflake
-      account: "{{ env_var('SNOWFLAKE_ACCOUNT', 'pm94728.central-india.azure') }}"
-      user: "{{ env_var('SNOWFLAKE_USER', 'vinay') }}"
-      password: "{{ env_var('SNOWFLAKE_PASSWORD', '') }}"
+      account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
+      user: "{{ env_var('SNOWFLAKE_USER') }}"
+      password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
       role: "{{ env_var('SNOWFLAKE_ROLE', 'ACCOUNTADMIN') }}"
       database: "{{ env_var('SNOWFLAKE_DATABASE', 'BANKING') }}"
       warehouse: "{{ env_var('SNOWFLAKE_WAREHOUSE', 'COMPUTE_WH') }}"
@@ -15,9 +15,9 @@ banking_dbt:
 
     prod:
       type: snowflake
-      account: "{{ env_var('SNOWFLAKE_ACCOUNT', '') }}"
-      user: "{{ env_var('SNOWFLAKE_USER', '') }}"
-      password: "{{ env_var('SNOWFLAKE_PASSWORD', '') }}"
+      account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
+      user: "{{ env_var('SNOWFLAKE_USER') }}"
+      password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
       role: "{{ env_var('SNOWFLAKE_ROLE', 'ACCOUNTADMIN') }}"
       database: "{{ env_var('SNOWFLAKE_DATABASE', 'BANKING') }}"
       warehouse: "{{ env_var('SNOWFLAKE_WAREHOUSE', 'COMPUTE_WH') }}"

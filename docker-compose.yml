@@ -1,21 +1,29 @@
 version: '3.8'
+
 services:
+  # -------------------------------------------------------------------
+  # Apache Zookeeper (Kafka Coordination)
+  # -------------------------------------------------------------------
   zookeeper:
     image: confluentinc/cp-zookeeper:7.4.0
+    container_name: zookeeper
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
     ports:
       - "2181:2181"
 
+  # -------------------------------------------------------------------
+  # Apache Kafka (Message Broker for CDC Events)
+  # -------------------------------------------------------------------
   kafka:
     image: confluentinc/cp-kafka:7.4.1
     container_name: kafka
     depends_on:
       - zookeeper
     ports:
-      - "9092:9092"   # internal Docker network
-      - "29092:29092" # host machine access
+      - "9092:9092"   # Internal Docker network
+      - "29092:29092" # Host machine access
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
@@ -27,9 +35,12 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
 
-
+  # -------------------------------------------------------------------
+  # Debezium Connect (Postgres Change Data Capture)
+  # -------------------------------------------------------------------
   connect:
     image: debezium/connect:2.2
+    container_name: debezium-connect
     depends_on:
       - kafka
       - zookeeper
@@ -47,33 +58,44 @@ services:
       KEY_CONVERTER: 'org.apache.kafka.connect.json.JsonConverter'
       VALUE_CONVERTER: 'org.apache.kafka.connect.json.JsonConverter'
 
+  # -------------------------------------------------------------------
+  # PostgreSQL (Banking OLTP Source Database)
+  # -------------------------------------------------------------------
   postgres:
     image: postgres:15
+    container_name: banking-postgres
     environment:
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-banking}
     ports:
       - "5432:5432"
     volumes:
       - ./docker/postgres/data:/var/lib/postgresql/data
     command: >
       postgres -c wal_level=logical
-              -c max_wal_senders=10
-              -c max_replication_slots=10
-               
+               -c max_wal_senders=10
+               -c max_replication_slots=10
+
+  # -------------------------------------------------------------------
+  # MinIO (S3-Compatible Object Storage Data Lake)
+  # -------------------------------------------------------------------
   minio:
     image: minio/minio:latest
+    container_name: minio
     command: server /data --console-address ":9001"
     environment:
-      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
-      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-minioadmin}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-minioadmin}
     ports:
-      - "9000:9000"
-      - "9001:9001"
+      - "9000:9000" # API
+      - "9001:9001" # Web Console
     volumes:
       - ./docker/minio/data:/data
-    
+
+  # -------------------------------------------------------------------
+  # Apache Airflow Webserver (UI Dashboard)
+  # -------------------------------------------------------------------
   airflow-webserver:
     build:
       context: .
@@ -86,7 +108,7 @@ services:
       - airflow-init
     environment:
       - AIRFLOW__CORE__LOAD_EXAMPLES=False
-      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${AIRFLOW_DB_USER}:${AIRFLOW_DB_PASSWORD}@airflow-postgres:5432/${AIRFLOW_DB_NAME}
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${AIRFLOW_DB_USER:-admin}:${AIRFLOW_DB_PASSWORD:-admin}@airflow-postgres:5432/${AIRFLOW_DB_NAME:-airflow}
       - AIRFLOW__WEBSERVER__WEB_SERVER_MASTER_TIMEOUT=300
     volumes:
       - ./docker/dags:/opt/airflow/dags
@@ -105,6 +127,9 @@ services:
       echo 'Database ready. Starting webserver...' &&
       airflow webserver"
 
+  # -------------------------------------------------------------------
+  # Apache Airflow Scheduler (DAG Execution Engine)
+  # -------------------------------------------------------------------
   airflow-scheduler:
     build:
       context: .
@@ -116,7 +141,7 @@ services:
       - airflow-init
     environment:
       - AIRFLOW__CORE__LOAD_EXAMPLES=False
-      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${AIRFLOW_DB_USER}:${AIRFLOW_DB_PASSWORD}@airflow-postgres:5432/${AIRFLOW_DB_NAME}
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${AIRFLOW_DB_USER:-admin}:${AIRFLOW_DB_PASSWORD:-admin}@airflow-postgres:5432/${AIRFLOW_DB_NAME:-airflow}
     volumes:
       - ./docker/dags:/opt/airflow/dags
       - ./docker/logs:/opt/airflow/logs
@@ -132,21 +157,25 @@ services:
       echo 'Database ready. Starting scheduler...' &&
       airflow scheduler"
 
-
-
+  # -------------------------------------------------------------------
+  # Apache Airflow Metadata Database (PostgreSQL)
+  # -------------------------------------------------------------------
   airflow-postgres:
     image: postgres:15
     container_name: airflow-postgres
     restart: always
     environment:
-      POSTGRES_USER: ${AIRFLOW_DB_USER}
-      POSTGRES_PASSWORD: ${AIRFLOW_DB_PASSWORD}
-      POSTGRES_DB: ${AIRFLOW_DB_NAME}
+      POSTGRES_USER: ${AIRFLOW_DB_USER:-admin}
+      POSTGRES_PASSWORD: ${AIRFLOW_DB_PASSWORD:-admin}
+      POSTGRES_DB: ${AIRFLOW_DB_NAME:-airflow}
     volumes:
       - airflow_postgres_data:/var/lib/postgresql/data
     ports:
-      - "5433:5432"  # separate from banking-postgres to avoid conflict
-    
+      - "5433:5432" # Separate port to avoid collision with banking-postgres
+
+  # -------------------------------------------------------------------
+  # Apache Airflow Initializer (DB Migrations & Admin Account)
+  # -------------------------------------------------------------------
   airflow-init:
     build:
       context: .
@@ -156,7 +185,7 @@ services:
       - airflow-postgres
     environment:
       - AIRFLOW__CORE__LOAD_EXAMPLES=False
-      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${AIRFLOW_DB_USER}:${AIRFLOW_DB_PASSWORD}@airflow-postgres:5432/${AIRFLOW_DB_NAME}
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${AIRFLOW_DB_USER:-admin}:${AIRFLOW_DB_PASSWORD:-admin}@airflow-postgres:5432/${AIRFLOW_DB_NAME:-airflow}
     volumes:
       - ./docker/dags:/opt/airflow/dags
       - ./docker/logs:/opt/airflow/logs
@@ -164,12 +193,13 @@ services:
       - ./banking_dbt:/opt/airflow/banking_dbt
       - ./banking_dbt/.dbt:/home/airflow/.dbt
     command: >
-      bash -c "airflow db init && airflow users create --username admin --firstname Admin --lastname User --role Admin --email admin@example.com --password admin"
-    restart: "no"  
+      bash -c "airflow db init && airflow users create --username ${AIRFLOW_ADMIN_USER:-admin} --firstname Admin --lastname User --role Admin --email ${AIRFLOW_ADMIN_EMAIL:-admin@example.com} --password ${AIRFLOW_ADMIN_PASSWORD:-admin}"
+    restart: "no"
 
 volumes:
   airflow_postgres_data:
   postgres_data:
+
 networks:
   default:
     name: banking-mds-net

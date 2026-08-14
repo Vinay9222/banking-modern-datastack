@@ -1,0 +1,45 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: "Type 2 Slowly Changing Dimension (SCD2) for customers tracking history changes."
+    columns:
+      - name: customer_id
+        description: "Customer identifier"
+        tests:
+          - not_null
+      - name: is_current
+        description: "Flag indicating whether this is the active customer record"
+        tests:
+          - not_null
+
+  - name: dim_accounts
+    description: "Type 2 Slowly Changing Dimension (SCD2) for accounts tracking balance and type history."
+    columns:
+      - name: account_id
+        description: "Account identifier"
+        tests:
+          - not_null
+      - name: is_current
+        description: "Flag indicating whether this is the active account record"
+        tests:
+          - not_null
+
+  - name: fact_transactions
+    description: "Incremental transaction fact table enriched with customer details."
+    columns:
+      - name: transaction_id
+        description: "Unique transaction identifier"
+        tests:
+          - unique
+          - not_null
+      - name: account_id
+        description: "Account associated with transaction"
+        tests:
+          - not_null
+      - name: customer_id
+        description: "Customer who owns the transacting account"
+      - name: amount
+        description: "Transaction amount"
+        tests:
+          - not_null

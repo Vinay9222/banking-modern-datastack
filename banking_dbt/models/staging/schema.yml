@@ -1,0 +1,49 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: "Staging view for raw banking customers with deduplication by customer ID."
+    columns:
+      - name: customer_id
+        description: "Primary key for customer"
+        tests:
+          - unique
+          - not_null
+      - name: email
+        description: "Unique customer email"
+        tests:
+          - not_null
+
+  - name: stg_accounts
+    description: "Staging view for raw banking accounts with latest record deduplication."
+    columns:
+      - name: account_id
+        description: "Primary key for bank account"
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: "Foreign key referencing the owning customer"
+        tests:
+          - not_null
+      - name: account_type
+        description: "Type of account (e.g., CHECKING, SAVINGS)"
+        tests:
+          - not_null
+
+  - name: stg_transactions
+    description: "Staging view for raw financial transactions with deduplication."
+    columns:
+      - name: transaction_id
+        description: "Primary key for transaction"
+        tests:
+          - unique
+          - not_null
+      - name: account_id
+        description: "Foreign key referencing account"
+        tests:
+          - not_null
+      - name: amount
+        description: "Monetary amount for the transaction"
+        tests:
+          - not_null

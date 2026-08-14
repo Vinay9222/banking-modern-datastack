@@ -42,6 +42,9 @@ def random_money(min_val: Decimal, max_val: Decimal) -> Decimal:
     val = Decimal(str(random.uniform(float(min_val), float(max_val))))
     return val.quantize(Decimal("0.01"), rounding=ROUND_DOWN)
 
+print("HOST:", os.getenv("POSTGRES_HOST"))
+print("USER:", os.getenv("POSTGRES_USER"))
+print("PASSWORD:", repr(os.getenv("POSTGRES_PASSWORD")))  # repr shows if it's None or empty string
 # -----------------------------
 # Connect to Postgres
 # -----------------------------

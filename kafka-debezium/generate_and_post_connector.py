@@ -15,11 +15,11 @@ connector_config = {
     "name": "postgres-connector",
     "config": {
         "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
-        "database.hostname": os.getenv("POSTGRES_HOST"),
-        "database.port": os.getenv("POSTGRES_PORT"),
-        "database.user": os.getenv("POSTGRES_USER"),
-        "database.password": os.getenv("POSTGRES_PASSWORD"),
-        "database.dbname": os.getenv("POSTGRES_DB"),
+        "database.hostname": os.getenv("POSTGRES_HOST", "postgres"),
+        "database.port": os.getenv("POSTGRES_PORT", "5432"),
+        "database.user": os.getenv("POSTGRES_USER", "postgres"),
+        "database.password": os.getenv("POSTGRES_PASSWORD", "postgres"),
+        "database.dbname": os.getenv("POSTGRES_DB", "banking"),
         "topic.prefix": "banking_server",
         "table.include.list": "public.customers,public.accounts,public.transactions",
         "plugin.name": "pgoutput",
@@ -42,8 +42,8 @@ response = requests.post(url, headers=headers, data=json.dumps(connector_config)
 # Debug/Output
 # -----------------------------
 if response.status_code == 201:
-    print("✅ Connector created successfully!")
+    print("[SUCCESS] Connector created successfully!")
 elif response.status_code == 409:
-    print("⚠️ Connector already exists.")
+    print("[WARNING] Connector already exists.")
 else:
-    print(f"❌ Failed to create connector ({response.status_code}): {response.text}")
+    print(f"[ERROR] Failed to create connector ({response.status_code}): {response.text}")

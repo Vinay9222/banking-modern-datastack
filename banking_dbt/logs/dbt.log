@@ -456,3 +456,1803 @@ SELECT * FROM BANKING.ANALYSTICS.stg_customers
 Finished 'snapshot' with 2 warnings for target 'dev' [6.4s]
 Processed: 2 snapshots
 Summary: 2 total | 2 success
+==================== 2026-08-11T04:44:03.655814Z | 019fef22-8079-7752-b84c-c818113a5be4 ====================
+04:44:03.668962 [info ]: dbt-fusion 2.0.0-preview.205
+04:44:03.680942 [info ]: Started loading project
+04:44:03.741663 [info ]: Loading profiles.yml
+04:44:03.830905 [debug]:    Started loading packages
+04:44:03.859576 [debug]:     Loaded [  0.03s] packages
+04:44:03.879080 [info ]: Finished loading project [  0.20s]
+04:44:03.890651 [info ]: Started parsing
+04:44:03.997925 [debug]: Finished parsing models/source.yml [  0.01s]
+04:44:04.039942 [debug]: Finished parsing snapshots\accounts_snapshot.sql [  0.03s]
+04:44:04.040554 [debug]: Finished parsing snapshots\customers.snapshot.sql [  0.00s]
+04:44:04.057169 [debug]: Finished parsing models/marts/dimensions/dim_accounts.sql [  0.01s]
+04:44:04.057968 [debug]: Finished parsing models/marts/dimensions/dim_customers.sql [  0.00s]
+04:44:04.060140 [debug]: Finished parsing models/staging/stg_accounts.sql [  0.00s]
+04:44:04.061973 [debug]: Finished parsing models/staging/stg_customers.sql [  0.00s]
+04:44:04.063092 [debug]: Finished parsing models/staging/stg_transactions.sql [  0.00s]
+04:44:04.223817 [warn ]: [UnusedResourceConfigPath (dbt1097)]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 1 unused configuration paths:
+- models.banking_dbt.example
+04:44:04.228145 [info ]: Finished parsing [  0.34s]
+04:44:04.237163 [info ]: Started scheduling
+04:44:04.245028 [info ]: Finished scheduling [  0.01s]
+04:44:04.256491 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "BANKING", schema: "ANALYTICS", table: "ACCOUNTS_SNAPSHOT" }) and interval: None
+04:44:04.256949 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "BANKING", schema: "RAW", table: "ACCOUNTS" }) and interval: None
+04:44:04.256984 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "BANKING", schema: "RAW", table: "CUSTOMERS" }) and interval: None
+04:44:04.257007 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "BANKING", schema: "ANALYTICS", table: "CUSTOMERS_SNAPSHOT" }) and interval: None
+04:44:04.257035 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "BANKING", schema: "RAW", table: "TRANSACTIONS" }) and interval: None
+04:44:05.131877 [debug]: Requesting license from https://sv179.us1.dbt.com/api/private/accounts/70506183154854/feature-licenses/ with 1 key IDs: ["fusion-prod-2025-11-20"]
+04:44:05.825614 [warn ]: [LicenseError (dbt1068)]: Error loading license from remote server sv179.us1.dbt.com, skipping: Email not verified
+04:44:05.831692 [debug]: Requesting license from https://sv179.us1.dbt.com/api/private/accounts/70506183154854/feature-licenses/ with 1 key IDs: ["fusion-prod-2025-11-20"]
+04:44:06.547209 [debug]: License check failed: Feature not licensed: 'lineage'
+04:44:06.562019 [info ]: Started building task graph
+04:44:06.571195 [info ]: Finished building task graph [  0.01s]
+04:44:09.015678 [debug]: Query executed on node unknown:
+show terse schemas in database BANKING
+    limit 10000
+/* {"app": "dbt", "connection_name": "", "dbt_version": "2.0.0", "profile_name": "banking_dbt", "target_name": "dev"} */
+04:44:09.026118 [info ]: Started rendering (5 nodes)
+04:44:09.027387 [info ]: Started model ANALYSTICS.stg_transactions
+04:44:09.027422 [debug]: Started rendering model ANALYSTICS.stg_transactions
+04:44:09.028119 [info ]: Started model ANALYSTICS.dim_customers
+04:44:09.028142 [debug]: Started rendering model ANALYSTICS.dim_customers
+04:44:09.028167 [info ]: Started model ANALYSTICS.stg_customers
+04:44:09.028175 [debug]: Started rendering model ANALYSTICS.stg_customers
+04:44:09.028189 [info ]: Started model ANALYSTICS.dim_accounts
+04:44:09.028202 [debug]: Started rendering model ANALYSTICS.dim_accounts
+04:44:09.028217 [info ]: Started model ANALYSTICS.stg_accounts
+04:44:09.028225 [debug]: Started rendering model ANALYSTICS.stg_accounts
+04:44:09.042107 [debug]: Compiled SQL for node model.banking_dbt.dim_accounts at target\compiled\banking_dbt\models\marts\dimensions\dim_accounts.sql
+04:44:09.042107 [debug]: Compiled SQL for node model.banking_dbt.stg_customers at target\compiled\banking_dbt\models\staging\stg_customers.sql
+04:44:09.042107 [debug]: Compiled SQL for node model.banking_dbt.stg_transactions at target\compiled\banking_dbt\models\staging\stg_transactions.sql
+04:44:09.042107 [debug]: Compiled SQL for node model.banking_dbt.stg_accounts at target\compiled\banking_dbt\models\staging\stg_accounts.sql
+04:44:09.042107 [debug]: Compiled SQL for node model.banking_dbt.dim_customers at target\compiled\banking_dbt\models\marts\dimensions\dim_customers.sql
+04:44:09.044068 [debug]: Finished rendering [  0.02s] model ANALYSTICS.stg_transactions [success]
+04:44:09.045187 [info ]: Started analyzing (5 nodes)
+04:44:09.045308 [debug]: Started analyzing model ANALYSTICS.stg_transactions
+04:44:09.045602 [debug]: Finished rendering [  0.02s] model ANALYSTICS.dim_accounts [success]
+04:44:09.045840 [debug]: Started analyzing model ANALYSTICS.dim_accounts
+04:44:09.045873 [debug]: Finished rendering [  0.02s] model ANALYSTICS.stg_accounts [success]
+04:44:09.046122 [debug]: Started analyzing model ANALYSTICS.stg_accounts
+04:44:09.046150 [debug]: Finished rendering [  0.02s] model ANALYSTICS.dim_customers [success]
+04:44:09.046399 [debug]: Started analyzing model ANALYSTICS.dim_customers
+04:44:09.046436 [debug]: Finished rendering [  0.02s] model ANALYSTICS.stg_customers [success]
+04:44:09.046667 [info ]: Finished rendering [  0.02s] (5 nodes, 0 skipped, 0 errors)
+04:44:09.047152 [debug]: Started analyzing model ANALYSTICS.stg_customers
+04:44:09.094268 [debug]: Finished analyzing [  0.05s] model ANALYSTICS.dim_customers [success]
+04:44:09.095292 [debug]: Finished analyzing [  0.05s] model ANALYSTICS.dim_accounts [success]
+04:44:09.095586 [debug]: Finished analyzing [  0.05s] model ANALYSTICS.stg_transactions [success]
+04:44:09.095896 [info ]: Started running (5 nodes)
+04:44:09.096063 [info ]: Started running model ANALYSTICS.stg_transactions
+04:44:09.096106 [debug]: Finished analyzing [  0.05s] model ANALYSTICS.stg_accounts [success]
+04:44:09.096402 [info ]: Started running model ANALYSTICS.stg_accounts
+04:44:09.096447 [debug]: Finished analyzing [  0.05s] model ANALYSTICS.stg_customers [success]
+04:44:09.096788 [info ]: Finished analyzing [  0.05s] (5 nodes, 0 skipped, 0 errors)
+04:44:09.097295 [info ]: Started running model ANALYSTICS.stg_customers
+04:44:09.712946 [debug]: Query executed on node model.banking_dbt.stg_transactions:
+SHOW OBJECTS IN SCHEMA "BANKING"."ANALYSTICS" LIMIT 10000
+04:44:09.718657 [debug]: Writing runtime sql for node "model.banking_dbt.stg_transactions"
+04:44:10.047452 [debug]: Query executed on node model.banking_dbt.stg_transactions:
+create or replace   view BANKING.ANALYSTICS.stg_transactions
+  
+  
+  
+  
+  as (
+    
+
+SELECT
+    v:id::string                 AS transaction_id,
+    v:account_id::string         AS account_id,
+    v:amount::float              AS amount,
+    v:txn_type::string           AS transaction_type,
+    v:related_account_id::string AS related_account_id,
+    v:status::string             AS status,
+    v:created_at::timestamp      AS transaction_time,
+    CURRENT_TIMESTAMP            AS load_timestamp
+FROM BANKING.RAW.transactions
+  )
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.stg_transactions", "profile_name": "banking_dbt", "target_name": "dev"} */
+04:44:10.054202 [info ]: Finished running [  0.96s] model ANALYSTICS.stg_transactions [success]
+04:44:10.054475 [info ]:  Succeeded [  1.02s] model ANALYSTICS.stg_transactions (view)
+04:44:10.313270 [debug]: Query executed on node model.banking_dbt.stg_customers:
+SHOW OBJECTS IN SCHEMA "BANKING"."ANALYSTICS" LIMIT 10000
+04:44:10.314183 [debug]: Query executed on node model.banking_dbt.stg_accounts:
+SHOW OBJECTS IN SCHEMA "BANKING"."ANALYSTICS" LIMIT 10000
+04:44:10.315135 [debug]: Writing runtime sql for node "model.banking_dbt.stg_customers"
+04:44:10.315420 [debug]: Writing runtime sql for node "model.banking_dbt.stg_accounts"
+04:44:10.547535 [debug]: Query executed on node model.banking_dbt.stg_customers:
+create or replace   view BANKING.ANALYSTICS.stg_customers
+  
+  
+  
+  
+  as (
+    
+
+with parsed as (
+    select
+        v:id::string as customer_id,
+        v:first_name::string as first_name,
+        v:last_name::string as last_name,
+        v:email::string as email,
+        v:created_at::timestamp as created_time,
+        v:updated_at::timestamp as updated_time
+    from
+        BANKING.RAW.customers
+),
+
+ranked as (
+    select
+        customer_id,
+        first_name,
+        last_name,
+        email,
+        created_time,
+        updated_time,
+        rank() over(partition by customer_id order by created_time) as rnk
+    from
+        parsed
+)
+
+select 
+    customer_id,
+    first_name,
+    last_name,
+    email,
+    created_time,
+    updated_time
+from ranked
+where rnk = 1
+  )
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.stg_customers", "profile_name": "banking_dbt", "target_name": "dev"} */
+04:44:10.549287 [info ]: Finished running [  1.45s] model ANALYSTICS.stg_customers [success]
+04:44:10.549598 [info ]:  Succeeded [  1.52s] model ANALYSTICS.stg_customers (view)
+04:44:10.550401 [info ]: Started running model ANALYSTICS.dim_customers
+04:44:10.554615 [debug]: Writing runtime sql for node "model.banking_dbt.dim_customers"
+04:44:10.698397 [debug]: Query executed on node model.banking_dbt.dim_customers:
+create or replace transient  table BANKING.ANALYSTICS.dim_customers
+    
+    
+    
+    
+    as (
+
+WITH latest AS (
+    SELECT
+        customer_id,
+        first_name,
+        last_name,
+        email,
+        created_at,
+        dbt_valid_from   AS effective_from,
+        dbt_valid_to     AS effective_to,
+        CASE WHEN dbt_valid_to IS NULL THEN TRUE ELSE FALSE END AS is_current
+    FROM BANKING.ANALYTICS.customers_snapshot
+)
+
+SELECT * FROM latest
+    )
+
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.dim_customers", "profile_name": "banking_dbt", "target_name": "dev"} */
+04:44:10.806198 [debug]: Query executed on node model.banking_dbt.stg_accounts:
+create or replace   view BANKING.ANALYSTICS.stg_accounts
+  
+  
+  
+  
+  as (
+    
+
+with ranked as (
+    select
+        v:id::string            as account_id,
+        v:customer_id::string   as customer_id,
+        v:account_type::string  as account_type,
+        v:balance::float        as balance,
+        v:currency::string      as currency,
+        v:created_at::timestamp as created_at,
+        current_timestamp       as load_timestamp,
+        row_number() over (
+            partition by v:id::string
+            order by v:created_at desc
+        ) as rn
+    from BANKING.RAW.accounts
+)
+
+select
+    account_id,
+    customer_id,
+    account_type,
+    balance,
+    currency,
+    created_at,
+    load_timestamp
+from ranked
+where rn = 1
+  )
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.stg_accounts", "profile_name": "banking_dbt", "target_name": "dev"} */
+04:44:10.807618 [info ]: Finished running [  1.71s] model ANALYSTICS.stg_accounts [success]
+04:44:10.807858 [info ]:  Succeeded [  1.78s] model ANALYSTICS.stg_accounts (view)
+04:44:10.808215 [info ]: Started running model ANALYSTICS.dim_accounts
+04:44:10.810609 [debug]: Writing runtime sql for node "model.banking_dbt.dim_accounts"
+04:44:11.700148 [error]: [DbSyntaxInvalid (dbt1302)]: Database Error in model dim_customers (target\run\banking_dbt\models\marts\dimensions\dim_customers.sql)
+  [Snowflake] 000904 (42000): SQL compilation error: error line 14 at position 8
+  invalid identifier 'CREATED_AT'
+  (in run\banking_dbt\models/marts/dimensions\dim_customers.sql)
+04:44:11.700239 [info ]: Finished running [  1.15s] model ANALYSTICS.dim_customers [error]
+04:44:11.700542 [info ]:     Failed [  1.21s] model ANALYSTICS.dim_customers (table)
+04:44:13.205686 [debug]: Query executed on node model.banking_dbt.dim_accounts:
+create or replace transient  table BANKING.ANALYSTICS.dim_accounts
+    
+    
+    
+    
+    as (
+
+WITH source_data AS (
+    SELECT
+        account_id,
+        customer_id,
+        account_type,
+        balance,
+        currency,
+        created_at,
+        dbt_valid_from   AS effective_from,
+        dbt_valid_to     AS effective_to,
+        CASE WHEN dbt_valid_to IS NULL THEN TRUE ELSE FALSE END AS is_current
+    FROM BANKING.ANALYTICS.accounts_snapshot
+)
+
+SELECT * FROM source_data
+    )
+
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.dim_accounts", "profile_name": "banking_dbt", "target_name": "dev"} */
+04:44:13.206851 [info ]: Finished running [  2.40s] model ANALYSTICS.dim_accounts [success]
+04:44:13.206939 [info ]: Finished running [  4.11s] (5 nodes, 0 skipped, 1 errors)
+04:44:13.207277 [info ]:  Succeeded [  2.46s] model ANALYSTICS.dim_accounts (table)
+04:44:13.406150 [info ]: 
+==================== Execution Summary =====================
+Finished 'run' with 2 warnings and 1 error for target 'dev' [9.8s]
+Processed: 5 models
+Summary: 5 total | 4 success | 1 error
+==================== 2026-08-11T04:50:43.363056Z | 019fef28-9a20-7e71-a300-4da58bc83243 ====================
+04:50:43.363279 [info ]: dbt-fusion 2.0.0-preview.205
+04:50:43.364437 [info ]: Started loading project
+04:50:43.368371 [info ]: Loading profiles.yml
+04:50:43.381206 [debug]:    Started loading packages
+04:50:43.385207 [debug]:     Loaded [  0.00s] packages
+04:50:43.386629 [info ]: Finished loading project [  0.02s]
+04:50:43.387233 [info ]: Started parsing
+04:50:43.426018 [debug]: Finished parsing models/source.yml [  0.00s]
+04:50:43.428889 [debug]: Finished parsing snapshots\accounts_snapshot.sql [  0.00s]
+04:50:43.429297 [debug]: Finished parsing snapshots\customers.snapshot.sql [  0.00s]
+04:50:43.432902 [debug]: Finished parsing models/marts/dimensions/dim_accounts.sql [  0.00s]
+04:50:43.433457 [debug]: Finished parsing models/marts/dimensions/dim_customers.sql [  0.00s]
+04:50:43.433989 [debug]: Finished parsing models/staging/stg_accounts.sql [  0.00s]
+04:50:43.434454 [debug]: Finished parsing models/staging/stg_customers.sql [  0.00s]
+04:50:43.434894 [debug]: Finished parsing models/staging/stg_transactions.sql [  0.00s]
+04:50:43.579780 [warn ]: [UnusedResourceConfigPath (dbt1097)]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 1 unused configuration paths:
+- models.banking_dbt.example
+04:50:43.580909 [info ]: Finished parsing [  0.19s]
+04:50:43.582431 [info ]: Started scheduling
+04:50:43.585383 [info ]: Finished scheduling [  0.00s]
+04:50:43.590404 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "BANKING", schema: "ANALYTICS", table: "CUSTOMERS_SNAPSHOT" }) and interval: None
+04:50:43.606630 [debug]: Requesting license from https://sv179.us1.dbt.com/api/private/accounts/70506183154854/feature-licenses/ with 1 key IDs: ["fusion-prod-2025-11-20"]
+04:50:44.415854 [warn ]: [LicenseError (dbt1068)]: Error loading license from remote server sv179.us1.dbt.com, skipping: Email not verified
+04:50:44.422798 [debug]: Requesting license from https://sv179.us1.dbt.com/api/private/accounts/70506183154854/feature-licenses/ with 1 key IDs: ["fusion-prod-2025-11-20"]
+04:50:45.252599 [debug]: License check failed: Feature not licensed: 'lineage'
+04:50:45.253678 [info ]: Started building task graph
+04:50:45.253922 [info ]: Finished building task graph [  0.00s]
+04:50:46.590588 [debug]: Query executed on node unknown:
+show terse schemas in database BANKING
+    limit 10000
+/* {"app": "dbt", "connection_name": "", "dbt_version": "2.0.0", "profile_name": "banking_dbt", "target_name": "dev"} */
+04:50:46.591031 [info ]: Started rendering (1 nodes)
+04:50:46.591209 [info ]: Started model ANALYSTICS.dim_customers
+04:50:46.591231 [debug]: Started rendering model ANALYSTICS.dim_customers
+04:50:46.592796 [debug]: Compiled SQL for node model.banking_dbt.dim_customers at target\compiled\banking_dbt\models\marts\dimensions\dim_customers.sql
+04:50:46.592961 [debug]: Finished rendering [  0.00s] model ANALYSTICS.dim_customers [success]
+04:50:46.593207 [info ]: Finished rendering [  0.00s] (1 nodes, 0 skipped, 0 errors)
+04:50:46.593530 [info ]: Started analyzing (1 nodes)
+04:50:46.593661 [debug]: Started analyzing model ANALYSTICS.dim_customers
+04:50:46.606819 [debug]: Finished analyzing [  0.01s] model ANALYSTICS.dim_customers [success]
+04:50:46.607238 [info ]: Finished analyzing [  0.01s] (1 nodes, 0 skipped, 0 errors)
+04:50:46.607597 [info ]: Started running (1 nodes)
+04:50:46.607786 [info ]: Started running model ANALYSTICS.dim_customers
+04:50:46.757692 [debug]: Query executed on node model.banking_dbt.dim_customers:
+SHOW OBJECTS IN SCHEMA "BANKING"."ANALYSTICS" LIMIT 10000
+04:50:46.759980 [debug]: Writing runtime sql for node "model.banking_dbt.dim_customers"
+04:50:46.868967 [debug]: Query executed on node model.banking_dbt.dim_customers:
+create or replace transient  table BANKING.ANALYSTICS.dim_customers
+    
+    
+    
+    
+    as (
+
+WITH latest AS (
+    SELECT
+        customer_id,
+        first_name,
+        last_name,
+        email,
+        created_at,
+        dbt_valid_from   AS effective_from,
+        dbt_valid_to     AS effective_to,
+        CASE WHEN dbt_valid_to IS NULL THEN TRUE ELSE FALSE END AS is_current
+    FROM BANKING.ANALYTICS.customers_snapshot
+)
+
+SELECT * FROM latest
+    )
+
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.dim_customers", "profile_name": "banking_dbt", "target_name": "dev"} */
+04:50:47.869691 [error]: [DbSyntaxInvalid (dbt1302)]: Database Error in model dim_customers (target\run\banking_dbt\models\marts\dimensions\dim_customers.sql)
+  [Snowflake] 000904 (42000): SQL compilation error: error line 14 at position 8
+  invalid identifier 'CREATED_AT'
+  (in run\banking_dbt\models/marts/dimensions\dim_customers.sql)
+04:50:47.869801 [info ]: Finished running [  1.26s] model ANALYSTICS.dim_customers [error]
+04:50:47.870038 [info ]: Finished running [  1.26s] (1 nodes, 0 skipped, 1 errors)
+04:50:47.870483 [info ]:     Failed [  1.28s] model ANALYSTICS.dim_customers (table)
+04:50:48.037894 [info ]: 
+==================== Execution Summary =====================
+Finished 'run' with 2 warnings and 1 error for target 'dev' [4.7s]
+Processed: 1 model
+Summary: 1 total | 1 error
+==================== 2026-08-11T04:55:34.441084Z | 019fef2d-0b23-7d13-82be-1356633cf97e ====================
+04:55:34.441509 [info ]: dbt-fusion 2.0.0-preview.205
+04:55:34.442645 [info ]: Started loading project
+04:55:34.450356 [info ]: Loading profiles.yml
+04:55:34.478661 [debug]:    Started loading packages
+04:55:34.486021 [debug]:     Loaded [  0.01s] packages
+04:55:34.488179 [info ]: Finished loading project [  0.05s]
+04:55:34.489703 [info ]: Started parsing
+04:55:34.566377 [debug]: Finished parsing models/source.yml [  0.00s]
+04:55:34.571794 [debug]: Finished parsing snapshots\accounts_snapshot.sql [  0.00s]
+04:55:34.572615 [debug]: Finished parsing snapshots\customers.snapshot.sql [  0.00s]
+04:55:34.579025 [debug]: Finished parsing models/marts/dimensions/dim_accounts.sql [  0.00s]
+04:55:34.580028 [debug]: Finished parsing models/marts/dimensions/dim_customers.sql [  0.00s]
+04:55:34.581038 [debug]: Finished parsing models/staging/stg_accounts.sql [  0.00s]
+04:55:34.582011 [debug]: Finished parsing models/staging/stg_customers.sql [  0.00s]
+04:55:34.582964 [debug]: Finished parsing models/staging/stg_transactions.sql [  0.00s]
+04:55:34.828225 [warn ]: [UnusedResourceConfigPath (dbt1097)]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 1 unused configuration paths:
+- models.banking_dbt.example
+04:55:34.829833 [info ]: Finished parsing [  0.34s]
+04:55:34.831852 [info ]: Started scheduling
+04:55:34.832402 [info ]: Finished scheduling [  0.00s]
+04:55:34.839435 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "BANKING", schema: "ANALYTICS", table: "ACCOUNTS_SNAPSHOT" }) and interval: None
+04:55:34.839608 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "BANKING", schema: "RAW", table: "ACCOUNTS" }) and interval: None
+04:55:34.839668 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "BANKING", schema: "RAW", table: "CUSTOMERS" }) and interval: None
+04:55:34.839710 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "BANKING", schema: "RAW", table: "TRANSACTIONS" }) and interval: None
+04:55:34.839755 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "BANKING", schema: "ANALYTICS", table: "CUSTOMERS_SNAPSHOT" }) and interval: None
+04:55:34.863795 [debug]: Requesting license from https://sv179.us1.dbt.com/api/private/accounts/70506183154854/feature-licenses/ with 1 key IDs: ["fusion-prod-2025-11-20"]
+04:55:35.627586 [warn ]: [LicenseError (dbt1068)]: Error loading license from remote server sv179.us1.dbt.com, skipping: Email not verified
+04:55:35.636947 [debug]: Requesting license from https://sv179.us1.dbt.com/api/private/accounts/70506183154854/feature-licenses/ with 1 key IDs: ["fusion-prod-2025-11-20"]
+04:55:36.376785 [debug]: License check failed: Feature not licensed: 'lineage'
+04:55:36.378628 [info ]: Started building task graph
+04:55:36.379268 [info ]: Finished building task graph [  0.00s]
+04:55:37.783769 [debug]: Query executed on node unknown:
+show terse schemas in database BANKING
+    limit 10000
+/* {"app": "dbt", "connection_name": "", "dbt_version": "2.0.0", "profile_name": "banking_dbt", "target_name": "dev"} */
+04:55:37.784562 [info ]: Started rendering (5 nodes)
+04:55:37.784838 [info ]: Started model ANALYSTICS.stg_transactions
+04:55:37.784896 [debug]: Started rendering model ANALYSTICS.stg_transactions
+04:55:37.784975 [info ]: Started model ANALYSTICS.dim_customers
+04:55:37.784994 [debug]: Started rendering model ANALYSTICS.dim_customers
+04:55:37.785015 [info ]: Started model ANALYSTICS.stg_customers
+04:55:37.785026 [debug]: Started rendering model ANALYSTICS.stg_customers
+04:55:37.785043 [info ]: Started model ANALYSTICS.dim_accounts
+04:55:37.785060 [debug]: Started rendering model ANALYSTICS.dim_accounts
+04:55:37.785079 [info ]: Started model ANALYSTICS.stg_accounts
+04:55:37.785089 [debug]: Started rendering model ANALYSTICS.stg_accounts
+04:55:37.788797 [debug]: Compiled SQL for node model.banking_dbt.dim_customers at target\compiled\banking_dbt\models\marts\dimensions\dim_customers.sql
+04:55:37.788993 [debug]: Compiled SQL for node model.banking_dbt.dim_accounts at target\compiled\banking_dbt\models\marts\dimensions\dim_accounts.sql
+04:55:37.789386 [debug]: Finished rendering [  0.00s] model ANALYSTICS.dim_customers [success]
+04:55:37.790036 [info ]: Started analyzing (5 nodes)
+04:55:37.790346 [debug]: Compiled SQL for node model.banking_dbt.stg_transactions at target\compiled\banking_dbt\models\staging\stg_transactions.sql
+04:55:37.790324 [debug]: Started analyzing model ANALYSTICS.dim_customers
+04:55:37.790711 [debug]: Compiled SQL for node model.banking_dbt.stg_customers at target\compiled\banking_dbt\models\staging\stg_customers.sql
+04:55:37.790751 [debug]: Compiled SQL for node model.banking_dbt.stg_accounts at target\compiled\banking_dbt\models\staging\stg_accounts.sql
+04:55:37.790416 [debug]: Finished rendering [  0.01s] model ANALYSTICS.dim_accounts [success]
+04:55:37.790975 [debug]: Started analyzing model ANALYSTICS.dim_accounts
+04:55:37.791050 [debug]: Finished rendering [  0.01s] model ANALYSTICS.stg_transactions [success]
+04:55:37.791511 [debug]: Started analyzing model ANALYSTICS.stg_transactions
+04:55:37.791599 [debug]: Finished rendering [  0.01s] model ANALYSTICS.stg_customers [success]
+04:55:37.792097 [debug]: Started analyzing model ANALYSTICS.stg_customers
+04:55:37.792183 [debug]: Finished rendering [  0.01s] model ANALYSTICS.stg_accounts [success]
+04:55:37.792641 [info ]: Finished rendering [  0.01s] (5 nodes, 0 skipped, 0 errors)
+04:55:37.793169 [debug]: Started analyzing model ANALYSTICS.stg_accounts
+04:55:37.810380 [debug]: Finished analyzing [  0.02s] model ANALYSTICS.stg_transactions [success]
+04:55:37.811001 [info ]: Started running (5 nodes)
+04:55:37.811333 [info ]: Started running model ANALYSTICS.stg_transactions
+04:55:37.815668 [debug]: Finished analyzing [  0.03s] model ANALYSTICS.dim_customers [success]
+04:55:37.816585 [debug]: Finished analyzing [  0.03s] model ANALYSTICS.dim_accounts [success]
+04:55:37.817136 [debug]: Finished analyzing [  0.02s] model ANALYSTICS.stg_accounts [success]
+04:55:37.817594 [info ]: Started running model ANALYSTICS.stg_accounts
+04:55:37.817670 [debug]: Finished analyzing [  0.03s] model ANALYSTICS.stg_customers [success]
+04:55:37.818210 [info ]: Finished analyzing [  0.03s] (5 nodes, 0 skipped, 0 errors)
+04:55:37.818835 [info ]: Started running model ANALYSTICS.stg_customers
+04:55:37.937731 [debug]: Query executed on node model.banking_dbt.stg_transactions:
+SHOW OBJECTS IN SCHEMA "BANKING"."ANALYSTICS" LIMIT 10000
+04:55:37.940594 [debug]: Writing runtime sql for node "model.banking_dbt.stg_transactions"
+04:55:38.153547 [debug]: Query executed on node model.banking_dbt.stg_customers:
+SHOW OBJECTS IN SCHEMA "BANKING"."ANALYSTICS" LIMIT 10000
+04:55:38.157010 [debug]: Query executed on node model.banking_dbt.stg_transactions:
+create or replace   view BANKING.ANALYSTICS.stg_transactions
+  
+  
+  
+  
+  as (
+    
+
+SELECT
+    v:id::string                 AS transaction_id,
+    v:account_id::string         AS account_id,
+    v:amount::float              AS amount,
+    v:txn_type::string           AS transaction_type,
+    v:related_account_id::string AS related_account_id,
+    v:status::string             AS status,
+    v:created_at::timestamp      AS transaction_time,
+    CURRENT_TIMESTAMP            AS load_timestamp
+FROM BANKING.RAW.transactions
+  )
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.stg_transactions", "profile_name": "banking_dbt", "target_name": "dev"} */
+04:55:38.157794 [debug]: Writing runtime sql for node "model.banking_dbt.stg_customers"
+04:55:38.159468 [info ]: Finished running [  0.35s] model ANALYSTICS.stg_transactions [success]
+04:55:38.159948 [info ]:  Succeeded [  0.37s] model ANALYSTICS.stg_transactions (view)
+04:55:38.369151 [debug]: Query executed on node model.banking_dbt.stg_customers:
+create or replace   view BANKING.ANALYSTICS.stg_customers
+  
+  
+  
+  
+  as (
+    
+
+with parsed as (
+    select
+        v:id::string as customer_id,
+        v:first_name::string as first_name,
+        v:last_name::string as last_name,
+        v:email::string as email,
+        v:created_at::timestamp as created_time,
+        v:updated_at::timestamp as updated_time
+    from
+        BANKING.RAW.customers
+),
+
+ranked as (
+    select
+        customer_id,
+        first_name,
+        last_name,
+        email,
+        created_time,
+        updated_time,
+        rank() over(partition by customer_id order by created_time) as rnk
+    from
+        parsed
+)
+
+select 
+    customer_id,
+    first_name,
+    last_name,
+    email,
+    created_time,
+    updated_time
+from ranked
+where rnk = 1
+  )
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.stg_customers", "profile_name": "banking_dbt", "target_name": "dev"} */
+04:55:38.372165 [info ]: Finished running [  0.55s] model ANALYSTICS.stg_customers [success]
+04:55:38.373496 [info ]:  Succeeded [  0.58s] model ANALYSTICS.stg_customers (view)
+04:55:38.374404 [info ]: Started running model ANALYSTICS.dim_customers
+04:55:38.378913 [debug]: Writing runtime sql for node "model.banking_dbt.dim_customers"
+04:55:38.816724 [debug]: Query executed on node model.banking_dbt.stg_accounts:
+SHOW OBJECTS IN SCHEMA "BANKING"."ANALYSTICS" LIMIT 10000
+04:55:38.819198 [debug]: Writing runtime sql for node "model.banking_dbt.stg_accounts"
+04:55:39.024845 [debug]: Query executed on node model.banking_dbt.stg_accounts:
+create or replace   view BANKING.ANALYSTICS.stg_accounts
+  
+  
+  
+  
+  as (
+    
+
+with ranked as (
+    select
+        v:id::string            as account_id,
+        v:customer_id::string   as customer_id,
+        v:account_type::string  as account_type,
+        v:balance::float        as balance,
+        v:currency::string      as currency,
+        v:created_at::timestamp as created_at,
+        current_timestamp       as load_timestamp,
+        row_number() over (
+            partition by v:id::string
+            order by v:created_at desc
+        ) as rn
+    from BANKING.RAW.accounts
+)
+
+select
+    account_id,
+    customer_id,
+    account_type,
+    balance,
+    currency,
+    created_at,
+    load_timestamp
+from ranked
+where rn = 1
+  )
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.stg_accounts", "profile_name": "banking_dbt", "target_name": "dev"} */
+04:55:39.027300 [info ]: Finished running [  1.21s] model ANALYSTICS.stg_accounts [success]
+04:55:39.027807 [info ]:  Succeeded [  1.24s] model ANALYSTICS.stg_accounts (view)
+04:55:39.028644 [info ]: Started running model ANALYSTICS.dim_accounts
+04:55:39.032981 [debug]: Writing runtime sql for node "model.banking_dbt.dim_accounts"
+04:55:39.291071 [debug]: Query executed on node model.banking_dbt.dim_customers:
+create or replace transient  table BANKING.ANALYSTICS.dim_customers
+    
+    
+    
+    
+    as (
+
+WITH latest AS (
+    SELECT
+        customer_id,
+        first_name,
+        last_name,
+        email,
+        created_time,
+        dbt_valid_from   AS effective_from,
+        dbt_valid_to     AS effective_to,
+        CASE WHEN dbt_valid_to IS NULL THEN TRUE ELSE FALSE END AS is_current
+    FROM BANKING.ANALYTICS.customers_snapshot
+)
+
+SELECT * FROM latest
+    )
+
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.dim_customers", "profile_name": "banking_dbt", "target_name": "dev"} */
+04:55:39.293237 [info ]: Finished running [  0.92s] model ANALYSTICS.dim_customers [success]
+04:55:39.293704 [info ]:  Succeeded [  0.95s] model ANALYSTICS.dim_customers (table)
+04:55:39.508830 [debug]: Query executed on node model.banking_dbt.dim_accounts:
+create or replace transient  table BANKING.ANALYSTICS.dim_accounts
+    
+    
+    
+    
+    as (
+
+WITH source_data AS (
+    SELECT
+        account_id,
+        customer_id,
+        account_type,
+        balance,
+        currency,
+        created_at,
+        dbt_valid_from   AS effective_from,
+        dbt_valid_to     AS effective_to,
+        CASE WHEN dbt_valid_to IS NULL THEN TRUE ELSE FALSE END AS is_current
+    FROM BANKING.ANALYTICS.accounts_snapshot
+)
+
+SELECT * FROM source_data
+    )
+
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.dim_accounts", "profile_name": "banking_dbt", "target_name": "dev"} */
+04:55:39.511308 [info ]: Finished running [  0.48s] model ANALYSTICS.dim_accounts [success]
+04:55:39.511755 [info ]: Finished running [  1.70s] (5 nodes, 0 skipped, 0 errors)
+04:55:39.512774 [info ]:  Succeeded [  0.51s] model ANALYSTICS.dim_accounts (table)
+04:55:39.790521 [info ]: 
+==================== Execution Summary =====================
+Finished 'run' with 2 warnings for target 'dev' [5.3s]
+Processed: 5 models
+Summary: 5 total | 5 success
+==================== 2026-08-11T05:03:06.849789Z | 019fef33-f25a-7ca2-9fb4-e64a2156ec10 ====================
+05:03:06.850255 [info ]: dbt-fusion 2.0.0-preview.205
+05:03:06.851541 [info ]: Started loading project
+05:03:06.860116 [info ]: Loading profiles.yml
+05:03:06.888727 [debug]:    Started loading packages
+05:03:06.897041 [warn ]: [UnusedConfigKey (dbt1060)]: Ignored unexpected key 'banking_dbt'. Try '+banking_dbt' instead. YAML path: 'models.banking_dbt'.
+  --> dbt_project.yml:32:15
+05:03:06.910253 [debug]:     Loaded [  0.02s] packages
+05:03:06.913685 [info ]: Finished loading project [  0.06s]
+05:03:06.915422 [info ]: Started parsing
+05:03:07.030707 [debug]: Finished parsing models/source.yml [  0.00s]
+05:03:07.039617 [debug]: Finished parsing snapshots\accounts_snapshot.sql [  0.00s]
+05:03:07.042610 [debug]: Finished parsing snapshots\customers.snapshot.sql [  0.00s]
+05:03:07.051196 [debug]: Finished parsing models/marts/dimensions/dim_accounts.sql [  0.00s]
+05:03:07.052620 [debug]: Finished parsing models/marts/dimensions/dim_customers.sql [  0.00s]
+05:03:07.054386 [debug]: Finished parsing models/staging/stg_accounts.sql [  0.00s]
+05:03:07.056055 [debug]: Finished parsing models/staging/stg_customers.sql [  0.00s]
+05:03:07.057015 [debug]: Finished parsing models/staging/stg_transactions.sql [  0.00s]
+05:03:07.380096 [info ]: Finished parsing [  0.46s]
+05:03:07.382357 [info ]: Started scheduling
+05:03:07.382902 [info ]: Finished scheduling [  0.00s]
+05:03:07.392162 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "BANKING", schema: "RAW", table: "ACCOUNTS" }) and interval: None
+05:03:07.392339 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "BANKING", schema: "RAW", table: "CUSTOMERS" }) and interval: None
+05:03:07.392410 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "BANKING", schema: "RAW", table: "TRANSACTIONS" }) and interval: None
+05:03:07.392455 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "BANKING", schema: "ANALYTICS", table: "CUSTOMERS_SNAPSHOT" }) and interval: None
+05:03:07.392506 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "BANKING", schema: "ANALYTICS", table: "ACCOUNTS_SNAPSHOT" }) and interval: None
+05:03:07.423257 [debug]: Requesting license from https://sv179.us1.dbt.com/api/private/accounts/70506183154854/feature-licenses/ with 1 key IDs: ["fusion-prod-2025-11-20"]
+05:03:08.177828 [warn ]: [LicenseError (dbt1068)]: Error loading license from remote server sv179.us1.dbt.com, skipping: Email not verified
+05:03:08.187311 [debug]: Requesting license from https://sv179.us1.dbt.com/api/private/accounts/70506183154854/feature-licenses/ with 1 key IDs: ["fusion-prod-2025-11-20"]
+05:03:08.931222 [debug]: License check failed: Feature not licensed: 'lineage'
+05:03:08.933211 [info ]: Started building task graph
+05:03:08.933936 [info ]: Finished building task graph [  0.00s]
+05:03:10.373473 [debug]: Query executed on node unknown:
+show terse schemas in database BANKING
+    limit 10000
+/* {"app": "dbt", "connection_name": "", "dbt_version": "2.0.0", "profile_name": "banking_dbt", "target_name": "dev"} */
+05:03:10.374311 [info ]: Started rendering (5 nodes)
+05:03:10.374626 [info ]: Started model ANALYSTICS.stg_transactions
+05:03:10.374664 [debug]: Started rendering model ANALYSTICS.stg_transactions
+05:03:10.374734 [info ]: Started model ANALYSTICS.dim_customers
+05:03:10.374756 [debug]: Started rendering model ANALYSTICS.dim_customers
+05:03:10.374787 [info ]: Started model ANALYSTICS.stg_customers
+05:03:10.374810 [debug]: Started rendering model ANALYSTICS.stg_customers
+05:03:10.374851 [info ]: Started model ANALYSTICS.dim_accounts
+05:03:10.374903 [debug]: Started rendering model ANALYSTICS.dim_accounts
+05:03:10.374952 [info ]: Started model ANALYSTICS.stg_accounts
+05:03:10.374981 [debug]: Started rendering model ANALYSTICS.stg_accounts
+05:03:10.380321 [debug]: Compiled SQL for node model.banking_dbt.dim_customers at target\compiled\banking_dbt\models\marts\dimensions\dim_customers.sql
+05:03:10.380491 [debug]: Compiled SQL for node model.banking_dbt.dim_accounts at target\compiled\banking_dbt\models\marts\dimensions\dim_accounts.sql
+05:03:10.380596 [debug]: Compiled SQL for node model.banking_dbt.stg_transactions at target\compiled\banking_dbt\models\staging\stg_transactions.sql
+05:03:10.380764 [debug]: Compiled SQL for node model.banking_dbt.stg_accounts at target\compiled\banking_dbt\models\staging\stg_accounts.sql
+05:03:10.380813 [debug]: Compiled SQL for node model.banking_dbt.stg_customers at target\compiled\banking_dbt\models\staging\stg_customers.sql
+05:03:10.380718 [debug]: Finished rendering [  0.01s] model ANALYSTICS.dim_customers [success]
+05:03:10.381362 [info ]: Started analyzing (5 nodes)
+05:03:10.381716 [debug]: Started analyzing model ANALYSTICS.dim_customers
+05:03:10.381820 [debug]: Finished rendering [  0.01s] model ANALYSTICS.dim_accounts [success]
+05:03:10.382382 [debug]: Started analyzing model ANALYSTICS.dim_accounts
+05:03:10.382469 [debug]: Finished rendering [  0.01s] model ANALYSTICS.stg_transactions [success]
+05:03:10.383001 [debug]: Started analyzing model ANALYSTICS.stg_transactions
+05:03:10.383105 [debug]: Finished rendering [  0.01s] model ANALYSTICS.stg_accounts [success]
+05:03:10.383674 [debug]: Started analyzing model ANALYSTICS.stg_accounts
+05:03:10.383760 [debug]: Finished rendering [  0.01s] model ANALYSTICS.stg_customers [success]
+05:03:10.384399 [info ]: Finished rendering [  0.01s] (5 nodes, 0 skipped, 0 errors)
+05:03:10.385192 [debug]: Started analyzing model ANALYSTICS.stg_customers
+05:03:10.401618 [debug]: Finished analyzing [  0.02s] model ANALYSTICS.stg_transactions [success]
+05:03:10.405336 [info ]: Started running (5 nodes)
+05:03:10.405675 [info ]: Started running model ANALYSTICS.stg_transactions
+05:03:10.406232 [debug]: Finished analyzing [  0.02s] model ANALYSTICS.dim_accounts [success]
+05:03:10.406765 [debug]: Finished analyzing [  0.03s] model ANALYSTICS.dim_customers [success]
+05:03:10.408443 [debug]: Finished analyzing [  0.02s] model ANALYSTICS.stg_customers [success]
+05:03:10.408904 [info ]: Started running model ANALYSTICS.stg_customers
+05:03:10.408975 [debug]: Finished analyzing [  0.03s] model ANALYSTICS.stg_accounts [success]
+05:03:10.409468 [info ]: Finished analyzing [  0.03s] (5 nodes, 0 skipped, 0 errors)
+05:03:10.410045 [info ]: Started running model ANALYSTICS.stg_accounts
+05:03:10.535219 [debug]: Query executed on node model.banking_dbt.stg_transactions:
+SHOW OBJECTS IN SCHEMA "BANKING"."ANALYSTICS" LIMIT 10000
+05:03:10.538174 [debug]: Writing runtime sql for node "model.banking_dbt.stg_transactions"
+05:03:10.630033 [debug]: Query executed on node model.banking_dbt.stg_customers:
+SHOW OBJECTS IN SCHEMA "BANKING"."ANALYSTICS" LIMIT 10000
+05:03:10.632403 [debug]: Writing runtime sql for node "model.banking_dbt.stg_customers"
+05:03:10.663482 [debug]: Query executed on node model.banking_dbt.stg_accounts:
+SHOW OBJECTS IN SCHEMA "BANKING"."ANALYSTICS" LIMIT 10000
+05:03:10.667335 [debug]: Writing runtime sql for node "model.banking_dbt.stg_accounts"
+05:03:10.776382 [debug]: Query executed on node model.banking_dbt.stg_transactions:
+create or replace   view BANKING.ANALYSTICS.stg_transactions
+  
+  
+  
+  
+  as (
+    
+
+SELECT
+    v:id::string                 AS transaction_id,
+    v:account_id::string         AS account_id,
+    v:amount::float              AS amount,
+    v:txn_type::string           AS transaction_type,
+    v:related_account_id::string AS related_account_id,
+    v:status::string             AS status,
+    v:created_at::timestamp      AS transaction_time,
+    CURRENT_TIMESTAMP            AS load_timestamp
+FROM BANKING.RAW.transactions
+  )
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.stg_transactions", "profile_name": "banking_dbt", "target_name": "dev"} */
+05:03:10.779053 [info ]: Finished running [  0.37s] model ANALYSTICS.stg_transactions [success]
+05:03:10.779505 [info ]:  Succeeded [  0.40s] model ANALYSTICS.stg_transactions (view)
+05:03:10.838186 [debug]: Query executed on node model.banking_dbt.stg_customers:
+create or replace   view BANKING.ANALYSTICS.stg_customers
+  
+  
+  
+  
+  as (
+    
+
+with parsed as (
+    select
+        v:id::string as customer_id,
+        v:first_name::string as first_name,
+        v:last_name::string as last_name,
+        v:email::string as email,
+        v:created_at::timestamp as created_time,
+        v:updated_at::timestamp as updated_time
+    from
+        BANKING.RAW.customers
+),
+
+ranked as (
+    select
+        customer_id,
+        first_name,
+        last_name,
+        email,
+        created_time,
+        updated_time,
+        rank() over(partition by customer_id order by created_time) as rnk
+    from
+        parsed
+)
+
+select 
+    customer_id,
+    first_name,
+    last_name,
+    email,
+    created_time,
+    updated_time
+from ranked
+where rnk = 1
+  )
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.stg_customers", "profile_name": "banking_dbt", "target_name": "dev"} */
+05:03:10.840879 [info ]: Finished running [  0.43s] model ANALYSTICS.stg_customers [success]
+05:03:10.841378 [info ]:  Succeeded [  0.46s] model ANALYSTICS.stg_customers (view)
+05:03:10.842311 [info ]: Started running model ANALYSTICS.dim_customers
+05:03:10.846473 [debug]: Writing runtime sql for node "model.banking_dbt.dim_customers"
+05:03:10.878891 [debug]: Query executed on node model.banking_dbt.stg_accounts:
+create or replace   view BANKING.ANALYSTICS.stg_accounts
+  
+  
+  
+  
+  as (
+    
+
+with ranked as (
+    select
+        v:id::string            as account_id,
+        v:customer_id::string   as customer_id,
+        v:account_type::string  as account_type,
+        v:balance::float        as balance,
+        v:currency::string      as currency,
+        v:created_at::timestamp as created_at,
+        current_timestamp       as load_timestamp,
+        row_number() over (
+            partition by v:id::string
+            order by v:created_at desc
+        ) as rn
+    from BANKING.RAW.accounts
+)
+
+select
+    account_id,
+    customer_id,
+    account_type,
+    balance,
+    currency,
+    created_at,
+    load_timestamp
+from ranked
+where rn = 1
+  )
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.stg_accounts", "profile_name": "banking_dbt", "target_name": "dev"} */
+05:03:10.881353 [info ]: Finished running [  0.47s] model ANALYSTICS.stg_accounts [success]
+05:03:10.881778 [info ]:  Succeeded [  0.50s] model ANALYSTICS.stg_accounts (view)
+05:03:10.882734 [info ]: Started running model ANALYSTICS.dim_accounts
+05:03:10.887853 [debug]: Writing runtime sql for node "model.banking_dbt.dim_accounts"
+05:03:11.636160 [debug]: Query executed on node model.banking_dbt.dim_customers:
+create or replace transient  table BANKING.ANALYSTICS.dim_customers
+    
+    
+    
+    
+    as (
+
+WITH latest AS (
+    SELECT
+        customer_id,
+        first_name,
+        last_name,
+        email,
+        created_time,
+        dbt_valid_from   AS effective_from,
+        dbt_valid_to     AS effective_to,
+        CASE WHEN dbt_valid_to IS NULL THEN TRUE ELSE FALSE END AS is_current
+    FROM BANKING.ANALYTICS.customers_snapshot
+)
+
+SELECT * FROM latest
+    )
+
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.dim_customers", "profile_name": "banking_dbt", "target_name": "dev"} */
+05:03:11.638444 [info ]: Finished running [  0.80s] model ANALYSTICS.dim_customers [success]
+05:03:11.639123 [info ]:  Succeeded [  0.83s] model ANALYSTICS.dim_customers (table)
+05:03:12.469224 [debug]: Query executed on node model.banking_dbt.dim_accounts:
+create or replace transient  table BANKING.ANALYSTICS.dim_accounts
+    
+    
+    
+    
+    as (
+
+WITH source_data AS (
+    SELECT
+        account_id,
+        customer_id,
+        account_type,
+        balance,
+        currency,
+        created_at,
+        dbt_valid_from   AS effective_from,
+        dbt_valid_to     AS effective_to,
+        CASE WHEN dbt_valid_to IS NULL THEN TRUE ELSE FALSE END AS is_current
+    FROM BANKING.ANALYTICS.accounts_snapshot
+)
+
+SELECT * FROM source_data
+    )
+
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.dim_accounts", "profile_name": "banking_dbt", "target_name": "dev"} */
+05:03:12.471631 [info ]: Finished running [  1.59s] model ANALYSTICS.dim_accounts [success]
+05:03:12.471781 [info ]: Finished running [  2.07s] (5 nodes, 0 skipped, 0 errors)
+05:03:12.472401 [info ]:  Succeeded [  1.62s] model ANALYSTICS.dim_accounts (table)
+05:03:12.640439 [info ]: 
+==================== Execution Summary =====================
+Finished 'run' with 2 warnings for target 'dev' [5.8s]
+Processed: 5 models
+Summary: 5 total | 5 success
+==================== 2026-08-11T05:10:31.769036Z | 019fef3a-bc47-7522-9737-405453f0c39a ====================
+05:10:31.769643 [info ]: dbt-fusion 2.0.0-preview.205
+05:10:31.772798 [info ]: Started loading project
+05:10:31.803524 [info ]: Loading profiles.yml
+05:10:31.844897 [debug]:    Started loading packages
+05:10:31.854004 [warn ]: [UnusedConfigKey (dbt1060)]: Ignored unexpected key 'banking_dbt'. Try '+banking_dbt' instead. YAML path: 'models.banking_dbt'.
+  --> dbt_project.yml:32:15
+05:10:31.859836 [debug]:     Loaded [  0.01s] packages
+05:10:31.864914 [info ]: Finished loading project [  0.09s]
+05:10:31.871094 [info ]: Started parsing
+05:10:31.987954 [debug]: Finished parsing models/source.yml [  0.00s]
+05:10:31.998664 [debug]: Finished parsing snapshots\accounts_snapshot.sql [  0.01s]
+05:10:31.999843 [debug]: Finished parsing snapshots\customers.snapshot.sql [  0.00s]
+05:10:32.012747 [debug]: Finished parsing models/marts/dimensions/dim_accounts.sql [  0.00s]
+05:10:32.015104 [debug]: Finished parsing models/marts/dimensions/dim_customers.sql [  0.00s]
+05:10:32.017781 [debug]: Finished parsing models/marts/facts/fact_transactions.sql [  0.00s]
+05:10:32.020241 [debug]: Finished parsing models/staging/stg_accounts.sql [  0.00s]
+05:10:32.021356 [debug]: Finished parsing models/staging/stg_customers.sql [  0.00s]
+05:10:32.022334 [debug]: Finished parsing models/staging/stg_transactions.sql [  0.00s]
+05:10:32.305475 [info ]: Finished parsing [  0.43s]
+05:10:32.307376 [info ]: Started scheduling
+05:10:32.310386 [info ]: Finished scheduling [  0.00s]
+05:10:32.322223 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "BANKING", schema: "ANALYSTICS", table: "STG_ACCOUNTS" }) and interval: None
+05:10:32.323718 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "BANKING", schema: "ANALYSTICS", table: "STG_TRANSACTIONS" }) and interval: None
+05:10:32.358631 [debug]: Requesting license from https://sv179.us1.dbt.com/api/private/accounts/70506183154854/feature-licenses/ with 1 key IDs: ["fusion-prod-2025-11-20"]
+05:10:33.141333 [warn ]: [LicenseError (dbt1068)]: Error loading license from remote server sv179.us1.dbt.com, skipping: Email not verified
+05:10:33.151918 [debug]: Requesting license from https://sv179.us1.dbt.com/api/private/accounts/70506183154854/feature-licenses/ with 1 key IDs: ["fusion-prod-2025-11-20"]
+05:10:33.944247 [debug]: License check failed: Feature not licensed: 'lineage'
+05:10:33.951299 [info ]: Started building task graph
+05:10:33.951757 [info ]: Finished building task graph [  0.00s]
+05:10:36.137883 [debug]: Query executed on node unknown:
+show terse schemas in database BANKING
+    limit 10000
+/* {"app": "dbt", "connection_name": "", "dbt_version": "2.0.0", "profile_name": "banking_dbt", "target_name": "dev"} */
+05:10:36.138693 [info ]: Started rendering (1 nodes)
+05:10:36.139018 [info ]: Started model ANALYSTICS.fact_transactions
+05:10:36.139060 [debug]: Started rendering model ANALYSTICS.fact_transactions
+05:10:36.146058 [debug]: Compiled SQL for node model.banking_dbt.fact_transactions at target\compiled\banking_dbt\models\marts\facts\fact_transactions.sql
+05:10:36.146423 [debug]: Finished rendering [  0.01s] model ANALYSTICS.fact_transactions [success]
+05:10:36.146946 [info ]: Finished rendering [  0.01s] (1 nodes, 0 skipped, 0 errors)
+05:10:36.147571 [info ]: Started analyzing (1 nodes)
+05:10:36.147789 [debug]: Started analyzing model ANALYSTICS.fact_transactions
+05:10:36.195688 [debug]: Finished analyzing [  0.05s] model ANALYSTICS.fact_transactions [success]
+05:10:36.196207 [info ]: Finished analyzing [  0.05s] (1 nodes, 0 skipped, 0 errors)
+05:10:36.196870 [info ]: Started running (1 nodes)
+05:10:36.197512 [info ]: Started running model ANALYSTICS.fact_transactions
+05:10:36.423665 [debug]: Query executed on node model.banking_dbt.fact_transactions:
+SHOW OBJECTS IN SCHEMA "BANKING"."ANALYSTICS" LIMIT 10000
+05:10:36.432368 [debug]: Invalid value for on_schema_change (None) specified. Setting default value of ignore.
+05:10:36.436908 [debug]: Writing runtime sql for node "model.banking_dbt.fact_transactions"
+05:10:38.443514 [debug]: Query executed on node model.banking_dbt.fact_transactions:
+create or replace transient  table BANKING.ANALYSTICS.fact_transactions
+    
+    
+    
+    
+    as (
+
+SELECT
+    t.transaction_id,
+    t.account_id,
+    a.customer_id,
+    t.amount,
+    t.related_account_id,
+    t.status,
+    t.transaction_type,
+    t.transaction_time,
+    CURRENT_TIMESTAMP AS load_timestamp
+FROM BANKING.ANALYSTICS.stg_transactions t
+LEFT JOIN BANKING.ANALYSTICS.stg_accounts a
+    ON t.account_id = a.account_id
+    )
+
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.fact_transactions", "profile_name": "banking_dbt", "target_name": "dev"} */
+05:10:38.447111 [debug]: Applying DROP to: BANKING.ANALYSTICS.fact_transactions__dbt_tmp
+05:10:38.541010 [debug]: Query executed on node model.banking_dbt.fact_transactions:
+drop view if exists BANKING.ANALYSTICS.fact_transactions__dbt_tmp cascade
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.fact_transactions", "profile_name": "banking_dbt", "target_name": "dev"} */
+05:10:38.546085 [info ]: Finished running [  2.35s] model ANALYSTICS.fact_transactions [success]
+05:10:38.546887 [info ]: Finished running [  2.35s] (1 nodes, 0 skipped, 0 errors)
+05:10:38.547917 [info ]:  Succeeded [  2.40s] model ANALYSTICS.fact_transactions (incremental)
+05:10:38.757494 [info ]: 
+==================== Execution Summary =====================
+Finished 'run' with 2 warnings for target 'dev' [7.0s]
+Processed: 1 model
+Summary: 1 total | 1 success
+==================== 2026-08-12T12:42:58.946781Z | 019ff5ff-53ab-7cd0-b79c-03974f5589c1 ====================
+12:42:58.956967 [info ]: dbt-fusion 2.0.0-preview.205
+12:42:58.969906 [info ]: Started loading project
+12:42:59.050444 [info ]: Loading profiles.yml
+12:42:59.183089 [debug]:    Started loading packages
+12:42:59.207078 [warn ]: [UnusedConfigKey (dbt1060)]: Ignored unexpected key 'banking_dbt'. Try '+banking_dbt' instead. YAML path: 'models.banking_dbt'.
+  --> dbt_project.yml:32:15
+12:42:59.226733 [debug]:     Loaded [  0.04s] packages
+12:42:59.253820 [info ]: Finished loading project [  0.28s]
+12:42:59.273208 [info ]: Started parsing
+12:42:59.495049 [debug]: Finished parsing models/source.yml [  0.02s]
+12:42:59.567369 [debug]: Finished parsing snapshots\accounts_snapshot.sql [  0.05s]
+12:42:59.569162 [debug]: Finished parsing snapshots\customers.snapshot.sql [  0.00s]
+12:42:59.607072 [debug]: Finished parsing models/marts/dimensions/dim_accounts.sql [  0.02s]
+12:42:59.609919 [debug]: Finished parsing models/marts/dimensions/dim_customers.sql [  0.00s]
+12:42:59.616269 [debug]: Finished parsing models/marts/facts/fact_transactions.sql [  0.01s]
+12:42:59.620187 [debug]: Finished parsing models/staging/stg_accounts.sql [  0.00s]
+12:42:59.622364 [debug]: Finished parsing models/staging/stg_customers.sql [  0.00s]
+12:42:59.624140 [debug]: Finished parsing models/staging/stg_transactions.sql [  0.00s]
+12:43:00.025244 [info ]: Finished parsing [  0.75s]
+12:43:00.061676 [info ]: Started scheduling
+12:43:00.087912 [info ]: Finished scheduling [  0.03s]
+12:43:00.117303 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "BANKING", schema: "RAW", table: "ACCOUNTS" }) and interval: None
+12:43:00.117921 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "BANKING", schema: "ANALYTICS", table: "ACCOUNTS_SNAPSHOT" }) and interval: None
+12:43:00.117983 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "BANKING", schema: "RAW", table: "TRANSACTIONS" }) and interval: None
+12:43:00.118025 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "BANKING", schema: "ANALYTICS", table: "CUSTOMERS_SNAPSHOT" }) and interval: None
+12:43:00.118064 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "BANKING", schema: "RAW", table: "CUSTOMERS" }) and interval: None
+12:43:01.248256 [debug]: Requesting license from https://sv179.us1.dbt.com/api/private/accounts/70506183154854/feature-licenses/ with 1 key IDs: ["fusion-prod-2025-11-20"]
+12:43:02.127771 [warn ]: [LicenseError (dbt1068)]: Error loading license from remote server sv179.us1.dbt.com, skipping: Email not verified
+12:43:02.134807 [debug]: Requesting license from https://sv179.us1.dbt.com/api/private/accounts/70506183154854/feature-licenses/ with 1 key IDs: ["fusion-prod-2025-11-20"]
+12:43:02.897883 [debug]: License check failed: Feature not licensed: 'lineage'
+12:43:02.924958 [info ]: Started building task graph
+12:43:02.939138 [info ]: Finished building task graph [  0.01s]
+12:43:07.159896 [debug]: Query executed on node unknown:
+show terse schemas in database BANKING
+    limit 10000
+/* {"app": "dbt", "connection_name": "", "dbt_version": "2.0.0", "profile_name": "banking_dbt", "target_name": "dev"} */
+12:43:07.171178 [info ]: Started rendering (6 nodes)
+12:43:07.174953 [info ]: Started model ANALYSTICS.stg_transactions
+12:43:07.175266 [debug]: Started rendering model ANALYSTICS.stg_transactions
+12:43:07.176329 [info ]: Started model ANALYSTICS.dim_customers
+12:43:07.176341 [debug]: Started rendering model ANALYSTICS.dim_customers
+12:43:07.176355 [info ]: Started model ANALYSTICS.stg_customers
+12:43:07.176362 [debug]: Started rendering model ANALYSTICS.stg_customers
+12:43:07.176373 [info ]: Started model ANALYSTICS.dim_accounts
+12:43:07.176384 [debug]: Started rendering model ANALYSTICS.dim_accounts
+12:43:07.176395 [info ]: Started model ANALYSTICS.stg_accounts
+12:43:07.176403 [debug]: Started rendering model ANALYSTICS.stg_accounts
+12:43:07.194554 [debug]: Compiled SQL for node model.banking_dbt.stg_transactions at target\compiled\banking_dbt\models\staging\stg_transactions.sql
+12:43:07.195038 [debug]: Compiled SQL for node model.banking_dbt.dim_accounts at target\compiled\banking_dbt\models\marts\dimensions\dim_accounts.sql
+12:43:07.195321 [debug]: Compiled SQL for node model.banking_dbt.dim_customers at target\compiled\banking_dbt\models\marts\dimensions\dim_customers.sql
+12:43:07.196023 [debug]: Compiled SQL for node model.banking_dbt.stg_customers at target\compiled\banking_dbt\models\staging\stg_customers.sql
+12:43:07.196216 [debug]: Compiled SQL for node model.banking_dbt.stg_accounts at target\compiled\banking_dbt\models\staging\stg_accounts.sql
+12:43:07.198016 [debug]: Finished rendering [  0.02s] model ANALYSTICS.dim_customers [success]
+12:43:07.200470 [info ]: Started analyzing (6 nodes)
+12:43:07.200709 [debug]: Started analyzing model ANALYSTICS.dim_customers
+12:43:07.201197 [debug]: Finished rendering [  0.03s] model ANALYSTICS.stg_transactions [success]
+12:43:07.201592 [debug]: Started analyzing model ANALYSTICS.stg_transactions
+12:43:07.201643 [debug]: Finished rendering [  0.03s] model ANALYSTICS.stg_customers [success]
+12:43:07.202013 [debug]: Started analyzing model ANALYSTICS.stg_customers
+12:43:07.202096 [debug]: Finished rendering [  0.03s] model ANALYSTICS.dim_accounts [success]
+12:43:07.202476 [debug]: Started analyzing model ANALYSTICS.dim_accounts
+12:43:07.202529 [debug]: Finished rendering [  0.03s] model ANALYSTICS.stg_accounts [success]
+12:43:07.203542 [debug]: Started analyzing model ANALYSTICS.stg_accounts
+12:43:07.270050 [debug]: Finished analyzing [  0.07s] model ANALYSTICS.stg_customers [success]
+12:43:07.270493 [info ]: Started running (6 nodes)
+12:43:07.270811 [info ]: Started running model ANALYSTICS.stg_customers
+12:43:07.270861 [debug]: Finished analyzing [  0.07s] model ANALYSTICS.stg_accounts [success]
+12:43:07.271281 [info ]: Started running model ANALYSTICS.stg_accounts
+12:43:07.271319 [debug]: Finished analyzing [  0.07s] model ANALYSTICS.stg_transactions [success]
+12:43:07.271626 [info ]: Started running model ANALYSTICS.stg_transactions
+12:43:07.271653 [debug]: Finished analyzing [  0.07s] model ANALYSTICS.dim_accounts [success]
+12:43:07.272007 [debug]: Finished analyzing [  0.07s] model ANALYSTICS.dim_customers [success]
+12:43:07.714996 [debug]: Query executed on node model.banking_dbt.stg_accounts:
+SHOW OBJECTS IN SCHEMA "BANKING"."ANALYSTICS" LIMIT 10000
+12:43:07.716135 [debug]: Query executed on node model.banking_dbt.stg_transactions:
+SHOW OBJECTS IN SCHEMA "BANKING"."ANALYSTICS" LIMIT 10000
+12:43:07.721932 [debug]: Writing runtime sql for node "model.banking_dbt.stg_accounts"
+12:43:07.721973 [debug]: Writing runtime sql for node "model.banking_dbt.stg_transactions"
+12:43:08.009688 [debug]: Query executed on node model.banking_dbt.stg_accounts:
+create or replace   view BANKING.ANALYSTICS.stg_accounts
+  
+  
+  
+  
+  as (
+    
+
+with ranked as (
+    select
+        v:id::string            as account_id,
+        v:customer_id::string   as customer_id,
+        v:account_type::string  as account_type,
+        v:balance::float        as balance,
+        v:currency::string      as currency,
+        v:created_at::timestamp as created_at,
+        current_timestamp       as load_timestamp,
+        row_number() over (
+            partition by v:id::string
+            order by v:created_at desc
+        ) as rn
+    from BANKING.RAW.accounts
+)
+
+select
+    account_id,
+    customer_id,
+    account_type,
+    balance,
+    currency,
+    created_at,
+    load_timestamp
+from ranked
+where rn = 1
+  )
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.stg_accounts", "profile_name": "banking_dbt", "target_name": "dev"} */
+12:43:08.017064 [info ]: Finished running [  0.75s] model ANALYSTICS.stg_accounts [success]
+12:43:08.017529 [info ]:  Succeeded [  0.84s] model ANALYSTICS.stg_accounts (view)
+12:43:08.018724 [info ]: Started running model ANALYSTICS.dim_accounts
+12:43:08.024296 [debug]: Writing runtime sql for node "model.banking_dbt.dim_accounts"
+12:43:08.101655 [debug]: Query executed on node model.banking_dbt.stg_transactions:
+create or replace   view BANKING.ANALYSTICS.stg_transactions
+  
+  
+  
+  
+  as (
+    
+
+SELECT
+    v:id::string                 AS transaction_id,
+    v:account_id::string         AS account_id,
+    v:amount::float              AS amount,
+    v:txn_type::string           AS transaction_type,
+    v:related_account_id::string AS related_account_id,
+    v:status::string             AS status,
+    v:created_at::timestamp      AS transaction_time,
+    CURRENT_TIMESTAMP            AS load_timestamp
+FROM BANKING.RAW.transactions
+  )
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.stg_transactions", "profile_name": "banking_dbt", "target_name": "dev"} */
+12:43:08.103416 [info ]: Finished running [  0.83s] model ANALYSTICS.stg_transactions [success]
+12:43:08.103821 [info ]:  Succeeded [  0.93s] model ANALYSTICS.stg_transactions (view)
+12:43:08.104288 [info ]: Started model ANALYSTICS.fact_transactions
+12:43:08.104301 [debug]: Started rendering model ANALYSTICS.fact_transactions
+12:43:08.105720 [debug]: Compiled SQL for node model.banking_dbt.fact_transactions at target\compiled\banking_dbt\models\marts\facts\fact_transactions.sql
+12:43:08.105821 [debug]: Finished rendering [  0.00s] model ANALYSTICS.fact_transactions [success]
+12:43:08.105928 [info ]: Finished rendering [  0.93s] (6 nodes, 0 skipped, 0 errors)
+12:43:08.106822 [debug]: Started analyzing model ANALYSTICS.fact_transactions
+12:43:08.110538 [debug]: Finished analyzing [  0.00s] model ANALYSTICS.fact_transactions [success]
+12:43:08.110627 [info ]: Finished analyzing [  0.91s] (6 nodes, 0 skipped, 0 errors)
+12:43:08.111099 [info ]: Started running model ANALYSTICS.fact_transactions
+12:43:08.116223 [debug]: Invalid value for on_schema_change (None) specified. Setting default value of ignore.
+12:43:08.537125 [debug]: Query executed on node model.banking_dbt.stg_customers:
+SHOW OBJECTS IN SCHEMA "BANKING"."ANALYSTICS" LIMIT 10000
+12:43:08.539255 [debug]: Writing runtime sql for node "model.banking_dbt.stg_customers"
+12:43:08.684247 [debug]: Query executed on node model.banking_dbt.fact_transactions:
+create or replace  temporary view BANKING.ANALYSTICS.fact_transactions__dbt_tmp
+  
+  
+  
+  
+  as (
+    
+
+SELECT
+    t.transaction_id,
+    t.account_id,
+    a.customer_id,
+    t.amount,
+    t.related_account_id,
+    t.status,
+    t.transaction_type,
+    t.transaction_time,
+    CURRENT_TIMESTAMP AS load_timestamp
+FROM BANKING.ANALYSTICS.stg_transactions t
+LEFT JOIN BANKING.ANALYSTICS.stg_accounts a
+    ON t.account_id = a.account_id
+  )
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.fact_transactions", "profile_name": "banking_dbt", "target_name": "dev"} */
+12:43:08.733571 [debug]: Query executed on node model.banking_dbt.stg_customers:
+create or replace   view BANKING.ANALYSTICS.stg_customers
+  
+  
+  
+  
+  as (
+    
+
+with parsed as (
+    select
+        v:id::string as customer_id,
+        v:first_name::string as first_name,
+        v:last_name::string as last_name,
+        v:email::string as email,
+        v:created_at::timestamp as created_time,
+        v:updated_at::timestamp as updated_time
+    from
+        BANKING.RAW.customers
+),
+
+ranked as (
+    select
+        customer_id,
+        first_name,
+        last_name,
+        email,
+        created_time,
+        updated_time,
+        rank() over(partition by customer_id order by created_time) as rnk
+    from
+        parsed
+)
+
+select 
+    customer_id,
+    first_name,
+    last_name,
+    email,
+    created_time,
+    updated_time
+from ranked
+where rnk = 1
+  )
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.stg_customers", "profile_name": "banking_dbt", "target_name": "dev"} */
+12:43:08.738956 [info ]: Finished running [  1.47s] model ANALYSTICS.stg_customers [success]
+12:43:08.739235 [info ]:  Succeeded [  1.56s] model ANALYSTICS.stg_customers (view)
+12:43:08.739703 [info ]: Started running model ANALYSTICS.dim_customers
+12:43:08.743567 [debug]: Writing runtime sql for node "model.banking_dbt.dim_customers"
+12:43:08.769924 [debug]: Query executed on node model.banking_dbt.fact_transactions:
+describe table BANKING.ANALYSTICS.fact_transactions__dbt_tmp
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.fact_transactions", "profile_name": "banking_dbt", "target_name": "dev"} */
+12:43:08.858944 [debug]: Query executed on node model.banking_dbt.fact_transactions:
+describe table BANKING.ANALYSTICS.fact_transactions
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.fact_transactions", "profile_name": "banking_dbt", "target_name": "dev"} */
+12:43:08.955545 [debug]: Query executed on node model.banking_dbt.fact_transactions:
+describe table "BANKING"."ANALYSTICS"."FACT_TRANSACTIONS"
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.fact_transactions", "profile_name": "banking_dbt", "target_name": "dev"} */
+12:43:08.972411 [debug]: Writing runtime sql for node "model.banking_dbt.fact_transactions"
+12:43:09.050618 [debug]: Query executed on node model.banking_dbt.fact_transactions:
+-- back compat for old kwarg name
+  
+  begin
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.fact_transactions", "profile_name": "banking_dbt", "target_name": "dev"} */
+12:43:10.244911 [debug]: Query executed on node model.banking_dbt.dim_customers:
+create or replace transient  table BANKING.ANALYSTICS.dim_customers
+    
+    
+    
+    
+    as (
+
+WITH latest AS (
+    SELECT
+        customer_id,
+        first_name,
+        last_name,
+        email,
+        created_time,
+        dbt_valid_from   AS effective_from,
+        dbt_valid_to     AS effective_to,
+        CASE WHEN dbt_valid_to IS NULL THEN TRUE ELSE FALSE END AS is_current
+    FROM BANKING.ANALYTICS.customers_snapshot
+)
+
+SELECT * FROM latest
+    )
+
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.dim_customers", "profile_name": "banking_dbt", "target_name": "dev"} */
+12:43:10.245593 [debug]: Query executed on node model.banking_dbt.dim_accounts:
+create or replace transient  table BANKING.ANALYSTICS.dim_accounts
+    
+    
+    
+    
+    as (
+
+WITH source_data AS (
+    SELECT
+        account_id,
+        customer_id,
+        account_type,
+        balance,
+        currency,
+        created_at,
+        dbt_valid_from   AS effective_from,
+        dbt_valid_to     AS effective_to,
+        CASE WHEN dbt_valid_to IS NULL THEN TRUE ELSE FALSE END AS is_current
+    FROM BANKING.ANALYTICS.accounts_snapshot
+)
+
+SELECT * FROM source_data
+    )
+
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.dim_accounts", "profile_name": "banking_dbt", "target_name": "dev"} */
+12:43:10.246697 [info ]: Finished running [  1.51s] model ANALYSTICS.dim_customers [success]
+12:43:10.247103 [info ]:  Succeeded [  1.60s] model ANALYSTICS.dim_customers (table)
+12:43:10.247732 [info ]: Finished running [  2.23s] model ANALYSTICS.dim_accounts [success]
+12:43:10.247913 [info ]:  Succeeded [  2.32s] model ANALYSTICS.dim_accounts (table)
+12:43:12.008792 [debug]: Query executed on node model.banking_dbt.fact_transactions:
+
+    
+        
+            
+            
+            
+            
+        
+    
+
+    
+
+    merge into BANKING.ANALYSTICS.fact_transactions as DBT_INTERNAL_DEST
+        using BANKING.ANALYSTICS.fact_transactions__dbt_tmp as DBT_INTERNAL_SOURCE
+        on ((DBT_INTERNAL_SOURCE.transaction_id = DBT_INTERNAL_DEST.transaction_id))
+
+    
+    when matched then update set
+        "TRANSACTION_ID" = DBT_INTERNAL_SOURCE."TRANSACTION_ID","ACCOUNT_ID" = DBT_INTERNAL_SOURCE."ACCOUNT_ID","CUSTOMER_ID" = DBT_INTERNAL_SOURCE."CUSTOMER_ID","AMOUNT" = DBT_INTERNAL_SOURCE."AMOUNT","RELATED_ACCOUNT_ID" = DBT_INTERNAL_SOURCE."RELATED_ACCOUNT_ID","STATUS" = DBT_INTERNAL_SOURCE."STATUS","TRANSACTION_TYPE" = DBT_INTERNAL_SOURCE."TRANSACTION_TYPE","TRANSACTION_TIME" = DBT_INTERNAL_SOURCE."TRANSACTION_TIME","LOAD_TIMESTAMP" = DBT_INTERNAL_SOURCE."LOAD_TIMESTAMP"
+    
+
+    when not matched then insert
+        ("TRANSACTION_ID", "ACCOUNT_ID", "CUSTOMER_ID", "AMOUNT", "RELATED_ACCOUNT_ID", "STATUS", "TRANSACTION_TYPE", "TRANSACTION_TIME", "LOAD_TIMESTAMP")
+    values
+        ("TRANSACTION_ID", "ACCOUNT_ID", "CUSTOMER_ID", "AMOUNT", "RELATED_ACCOUNT_ID", "STATUS", "TRANSACTION_TYPE", "TRANSACTION_TIME", "LOAD_TIMESTAMP")
+
+
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.fact_transactions", "profile_name": "banking_dbt", "target_name": "dev"} */
+12:43:12.245325 [debug]: Query executed on node model.banking_dbt.fact_transactions:
+
+    commit
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.fact_transactions", "profile_name": "banking_dbt", "target_name": "dev"} */
+12:43:12.247854 [debug]: Applying DROP to: BANKING.ANALYSTICS.fact_transactions__dbt_tmp
+12:43:12.393093 [debug]: Query executed on node model.banking_dbt.fact_transactions:
+drop view if exists BANKING.ANALYSTICS.fact_transactions__dbt_tmp cascade
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.fact_transactions", "profile_name": "banking_dbt", "target_name": "dev"} */
+12:43:12.396673 [info ]: Finished running [  4.29s] model ANALYSTICS.fact_transactions [success]
+12:43:12.396977 [info ]: Finished running [  5.13s] (6 nodes, 0 skipped, 0 errors)
+12:43:12.397433 [info ]:  Succeeded [  4.29s] model ANALYSTICS.fact_transactions (incremental)
+12:43:12.772782 [info ]: 
+==================== Execution Summary =====================
+Finished 'run' with 2 warnings for target 'dev' [13.8s]
+Processed: 6 models
+Summary: 6 total | 6 success
+==================== 2026-08-13T06:56:12.122717Z | 019ff9e8-3354-7fa1-a987-1cb71ff1ade4 ====================
+06:56:12.123112 [info ]: dbt-fusion 2.0.0-preview.205
+06:56:12.124015 [info ]: Started loading project
+06:56:12.131773 [info ]: Loading profiles.yml
+06:56:12.155555 [debug]:    Started loading packages
+06:56:12.163016 [warn ]: [UnusedConfigKey (dbt1060)]: Ignored unexpected key 'banking_dbt'. Try '+banking_dbt' instead. YAML path: 'models.banking_dbt'.
+  --> dbt_project.yml:32:15
+06:56:12.170009 [debug]:     Loaded [  0.01s] packages
+06:56:12.172158 [info ]: Finished loading project [  0.05s]
+06:56:12.173567 [info ]: Started parsing
+06:56:12.266381 [debug]: Finished parsing models/source.yml [  0.00s]
+06:56:12.272680 [debug]: Finished parsing snapshots\accounts_snapshot.sql [  0.00s]
+06:56:12.274195 [debug]: Finished parsing snapshots\customers.snapshot.sql [  0.00s]
+06:56:12.284069 [debug]: Finished parsing models/marts/dimensions/dim_accounts.sql [  0.00s]
+06:56:12.285953 [debug]: Finished parsing models/marts/dimensions/dim_customers.sql [  0.00s]
+06:56:12.288564 [debug]: Finished parsing models/marts/facts/fact_transactions.sql [  0.00s]
+06:56:12.290148 [debug]: Finished parsing models/staging/stg_accounts.sql [  0.00s]
+06:56:12.292000 [debug]: Finished parsing models/staging/stg_customers.sql [  0.00s]
+06:56:12.293877 [debug]: Finished parsing models/staging/stg_transactions.sql [  0.00s]
+06:56:12.911177 [info ]: Finished parsing [  0.74s]
+06:56:12.916274 [info ]: Started scheduling
+06:56:12.918665 [info ]: Finished scheduling [  0.00s]
+06:56:12.929649 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "BANKING", schema: "ANALYTICS", table: "CUSTOMERS_SNAPSHOT" }) and interval: None
+06:56:12.929829 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "BANKING", schema: "RAW", table: "TRANSACTIONS" }) and interval: None
+06:56:12.929929 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "BANKING", schema: "RAW", table: "ACCOUNTS" }) and interval: None
+06:56:12.930018 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "BANKING", schema: "ANALYTICS", table: "ACCOUNTS_SNAPSHOT" }) and interval: None
+06:56:12.930107 [debug]: Initializing schema store with entry: Frontier(CanonicalFqn { catalog: "BANKING", schema: "RAW", table: "CUSTOMERS" }) and interval: None
+06:56:14.262698 [debug]: Requesting license from https://sv179.us1.dbt.com/api/private/accounts/70506183154854/feature-licenses/ with 1 key IDs: ["fusion-prod-2025-11-20"]
+06:56:15.078131 [warn ]: [LicenseError (dbt1068)]: Error loading license from remote server sv179.us1.dbt.com, skipping: Email not verified
+06:56:15.106602 [debug]: Requesting license from https://sv179.us1.dbt.com/api/private/accounts/70506183154854/feature-licenses/ with 1 key IDs: ["fusion-prod-2025-11-20"]
+06:56:15.886347 [debug]: License check failed: Feature not licensed: 'lineage'
+06:56:15.920110 [info ]: Started building task graph
+06:56:15.933285 [info ]: Finished building task graph [  0.01s]
+06:56:19.771881 [debug]: Query executed on node unknown:
+show terse schemas in database BANKING
+    limit 10000
+/* {"app": "dbt", "connection_name": "", "dbt_version": "2.0.0", "profile_name": "banking_dbt", "target_name": "dev"} */
+06:56:19.793288 [info ]: Started rendering (6 nodes)
+06:56:19.795987 [info ]: Started model ANALYSTICS.stg_transactions
+06:56:19.797008 [debug]: Started rendering model ANALYSTICS.stg_transactions
+06:56:19.798169 [info ]: Started model ANALYSTICS.dim_customers
+06:56:19.798222 [debug]: Started rendering model ANALYSTICS.dim_customers
+06:56:19.798285 [info ]: Started model ANALYSTICS.stg_customers
+06:56:19.798317 [debug]: Started rendering model ANALYSTICS.stg_customers
+06:56:19.798379 [info ]: Started model ANALYSTICS.dim_accounts
+06:56:19.798415 [debug]: Started rendering model ANALYSTICS.dim_accounts
+06:56:19.798474 [info ]: Started model ANALYSTICS.stg_accounts
+06:56:19.798517 [debug]: Started rendering model ANALYSTICS.stg_accounts
+06:56:19.822363 [debug]: Compiled SQL for node model.banking_dbt.dim_customers at target\compiled\banking_dbt\models\marts\dimensions\dim_customers.sql
+06:56:19.822363 [debug]: Compiled SQL for node model.banking_dbt.dim_accounts at target\compiled\banking_dbt\models\marts\dimensions\dim_accounts.sql
+06:56:19.822482 [debug]: Compiled SQL for node model.banking_dbt.stg_customers at target\compiled\banking_dbt\models\staging\stg_customers.sql
+06:56:19.822645 [debug]: Compiled SQL for node model.banking_dbt.stg_transactions at target\compiled\banking_dbt\models\staging\stg_transactions.sql
+06:56:19.822717 [debug]: Compiled SQL for node model.banking_dbt.stg_accounts at target\compiled\banking_dbt\models\staging\stg_accounts.sql
+06:56:19.826600 [debug]: Finished rendering [  0.03s] model ANALYSTICS.dim_customers [success]
+06:56:19.828709 [info ]: Started analyzing (6 nodes)
+06:56:19.828953 [debug]: Started analyzing model ANALYSTICS.dim_customers
+06:56:19.829378 [debug]: Finished rendering [  0.03s] model ANALYSTICS.stg_customers [success]
+06:56:19.829814 [debug]: Started analyzing model ANALYSTICS.stg_customers
+06:56:19.829890 [debug]: Finished rendering [  0.03s] model ANALYSTICS.stg_transactions [success]
+06:56:19.830480 [debug]: Started analyzing model ANALYSTICS.stg_transactions
+06:56:19.830559 [debug]: Finished rendering [  0.03s] model ANALYSTICS.dim_accounts [success]
+06:56:19.831429 [debug]: Started analyzing model ANALYSTICS.dim_accounts
+06:56:19.831497 [debug]: Finished rendering [  0.03s] model ANALYSTICS.stg_accounts [success]
+06:56:19.831995 [debug]: Started analyzing model ANALYSTICS.stg_accounts
+06:56:19.897891 [debug]: Finished analyzing [  0.07s] model ANALYSTICS.dim_customers [success]
+06:56:19.899146 [debug]: Finished analyzing [  0.07s] model ANALYSTICS.dim_accounts [success]
+06:56:19.899825 [debug]: Finished analyzing [  0.07s] model ANALYSTICS.stg_transactions [success]
+06:56:19.900324 [info ]: Started running (6 nodes)
+06:56:19.900570 [info ]: Started running model ANALYSTICS.stg_transactions
+06:56:19.900617 [debug]: Finished analyzing [  0.07s] model ANALYSTICS.stg_accounts [success]
+06:56:19.901083 [info ]: Started running model ANALYSTICS.stg_accounts
+06:56:19.901136 [debug]: Finished analyzing [  0.07s] model ANALYSTICS.stg_customers [success]
+06:56:19.901675 [info ]: Started running model ANALYSTICS.stg_customers
+06:56:20.389387 [debug]: Query executed on node model.banking_dbt.stg_accounts:
+SHOW OBJECTS IN SCHEMA "BANKING"."ANALYSTICS" LIMIT 10000
+06:56:20.401802 [debug]: Writing runtime sql for node "model.banking_dbt.stg_accounts"
+06:56:20.494615 [debug]: Query executed on node model.banking_dbt.stg_customers:
+SHOW OBJECTS IN SCHEMA "BANKING"."ANALYSTICS" LIMIT 10000
+06:56:20.497291 [debug]: Writing runtime sql for node "model.banking_dbt.stg_customers"
+06:56:20.674572 [debug]: Query executed on node model.banking_dbt.stg_accounts:
+create or replace   view BANKING.ANALYSTICS.stg_accounts
+  
+  
+  
+  
+  as (
+    
+
+with ranked as (
+    select
+        v:id::string            as account_id,
+        v:customer_id::string   as customer_id,
+        v:account_type::string  as account_type,
+        v:balance::float        as balance,
+        v:currency::string      as currency,
+        v:created_at::timestamp as created_at,
+        current_timestamp       as load_timestamp,
+        row_number() over (
+            partition by v:id::string
+            order by v:created_at desc
+        ) as rn
+    from BANKING.RAW.accounts
+)
+
+select
+    account_id,
+    customer_id,
+    account_type,
+    balance,
+    currency,
+    created_at,
+    load_timestamp
+from ranked
+where rn = 1
+  )
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.stg_accounts", "profile_name": "banking_dbt", "target_name": "dev"} */
+06:56:20.684672 [info ]: Finished running [  0.78s] model ANALYSTICS.stg_accounts [success]
+06:56:20.691872 [info ]:  Succeeded [  0.88s] model ANALYSTICS.stg_accounts (view)
+06:56:20.695180 [info ]: Started running model ANALYSTICS.dim_accounts
+06:56:20.701451 [debug]: Writing runtime sql for node "model.banking_dbt.dim_accounts"
+06:56:20.881873 [debug]: Query executed on node model.banking_dbt.stg_transactions:
+SHOW OBJECTS IN SCHEMA "BANKING"."ANALYSTICS" LIMIT 10000
+06:56:20.886722 [debug]: Writing runtime sql for node "model.banking_dbt.stg_transactions"
+06:56:20.931191 [debug]: Query executed on node model.banking_dbt.stg_customers:
+create or replace   view BANKING.ANALYSTICS.stg_customers
+  
+  
+  
+  
+  as (
+    
+
+with parsed as (
+    select
+        v:id::string as customer_id,
+        v:first_name::string as first_name,
+        v:last_name::string as last_name,
+        v:email::string as email,
+        v:created_at::timestamp as created_time,
+        v:updated_at::timestamp as updated_time
+    from
+        BANKING.RAW.customers
+),
+
+ranked as (
+    select
+        customer_id,
+        first_name,
+        last_name,
+        email,
+        created_time,
+        updated_time,
+        rank() over(partition by customer_id order by created_time) as rnk
+    from
+        parsed
+)
+
+select 
+    customer_id,
+    first_name,
+    last_name,
+    email,
+    created_time,
+    updated_time
+from ranked
+where rnk = 1
+  )
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.stg_customers", "profile_name": "banking_dbt", "target_name": "dev"} */
+06:56:20.933559 [info ]: Finished running [  1.03s] model ANALYSTICS.stg_customers [success]
+06:56:20.934149 [info ]:  Succeeded [  1.13s] model ANALYSTICS.stg_customers (view)
+06:56:20.935064 [info ]: Started running model ANALYSTICS.dim_customers
+06:56:20.939148 [debug]: Writing runtime sql for node "model.banking_dbt.dim_customers"
+06:56:21.248854 [debug]: Query executed on node model.banking_dbt.stg_transactions:
+create or replace   view BANKING.ANALYSTICS.stg_transactions
+  
+  
+  
+  
+  as (
+    
+
+SELECT
+    v:id::string                 AS transaction_id,
+    v:account_id::string         AS account_id,
+    v:amount::float              AS amount,
+    v:txn_type::string           AS transaction_type,
+    v:related_account_id::string AS related_account_id,
+    v:status::string             AS status,
+    v:created_at::timestamp      AS transaction_time,
+    CURRENT_TIMESTAMP            AS load_timestamp
+FROM BANKING.RAW.transactions
+  )
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.stg_transactions", "profile_name": "banking_dbt", "target_name": "dev"} */
+06:56:21.251533 [info ]: Finished running [  1.35s] model ANALYSTICS.stg_transactions [success]
+06:56:21.251696 [info ]:  Succeeded [  1.45s] model ANALYSTICS.stg_transactions (view)
+06:56:21.252980 [info ]: Started model ANALYSTICS.fact_transactions
+06:56:21.253050 [debug]: Started rendering model ANALYSTICS.fact_transactions
+06:56:21.255880 [debug]: Compiled SQL for node model.banking_dbt.fact_transactions at target\compiled\banking_dbt\models\marts\facts\fact_transactions.sql
+06:56:21.256067 [debug]: Finished rendering [  0.00s] model ANALYSTICS.fact_transactions [success]
+06:56:21.256312 [info ]: Finished rendering [  1.46s] (6 nodes, 0 skipped, 0 errors)
+06:56:21.258290 [debug]: Started analyzing model ANALYSTICS.fact_transactions
+06:56:21.265841 [debug]: Finished analyzing [  0.01s] model ANALYSTICS.fact_transactions [success]
+06:56:21.266708 [info ]: Finished analyzing [  1.44s] (6 nodes, 0 skipped, 0 errors)
+06:56:21.267948 [info ]: Started running model ANALYSTICS.fact_transactions
+06:56:21.273436 [debug]: Invalid value for on_schema_change (None) specified. Setting default value of ignore.
+06:56:21.689111 [debug]: Query executed on node model.banking_dbt.fact_transactions:
+create or replace  temporary view BANKING.ANALYSTICS.fact_transactions__dbt_tmp
+  
+  
+  
+  
+  as (
+    
+
+SELECT
+    t.transaction_id,
+    t.account_id,
+    a.customer_id,
+    t.amount,
+    t.related_account_id,
+    t.status,
+    t.transaction_type,
+    t.transaction_time,
+    CURRENT_TIMESTAMP AS load_timestamp
+FROM BANKING.ANALYSTICS.stg_transactions t
+LEFT JOIN BANKING.ANALYSTICS.stg_accounts a
+    ON t.account_id = a.account_id
+  )
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.fact_transactions", "profile_name": "banking_dbt", "target_name": "dev"} */
+06:56:21.875872 [debug]: Query executed on node model.banking_dbt.fact_transactions:
+describe table BANKING.ANALYSTICS.fact_transactions__dbt_tmp
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.fact_transactions", "profile_name": "banking_dbt", "target_name": "dev"} */
+06:56:21.975771 [debug]: Query executed on node model.banking_dbt.fact_transactions:
+describe table BANKING.ANALYSTICS.fact_transactions
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.fact_transactions", "profile_name": "banking_dbt", "target_name": "dev"} */
+06:56:22.093742 [debug]: Query executed on node model.banking_dbt.fact_transactions:
+describe table "BANKING"."ANALYSTICS"."FACT_TRANSACTIONS"
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.fact_transactions", "profile_name": "banking_dbt", "target_name": "dev"} */
+06:56:22.106050 [debug]: Writing runtime sql for node "model.banking_dbt.fact_transactions"
+06:56:22.234030 [debug]: Query executed on node model.banking_dbt.fact_transactions:
+-- back compat for old kwarg name
+  
+  begin
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.fact_transactions", "profile_name": "banking_dbt", "target_name": "dev"} */
+06:56:22.903936 [debug]: Query executed on node model.banking_dbt.dim_accounts:
+create or replace transient  table BANKING.ANALYSTICS.dim_accounts
+    
+    
+    
+    
+    as (
+
+WITH source_data AS (
+    SELECT
+        account_id,
+        customer_id,
+        account_type,
+        balance,
+        currency,
+        created_at,
+        dbt_valid_from   AS effective_from,
+        dbt_valid_to     AS effective_to,
+        CASE WHEN dbt_valid_to IS NULL THEN TRUE ELSE FALSE END AS is_current
+    FROM BANKING.ANALYTICS.accounts_snapshot
+)
+
+SELECT * FROM source_data
+    )
+
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.dim_accounts", "profile_name": "banking_dbt", "target_name": "dev"} */
+06:56:22.906545 [info ]: Finished running [  2.21s] model ANALYSTICS.dim_accounts [success]
+06:56:22.906701 [info ]:  Succeeded [  2.31s] model ANALYSTICS.dim_accounts (table)
+06:56:22.954019 [debug]: Query executed on node model.banking_dbt.dim_customers:
+create or replace transient  table BANKING.ANALYSTICS.dim_customers
+    
+    
+    
+    
+    as (
+
+WITH latest AS (
+    SELECT
+        customer_id,
+        first_name,
+        last_name,
+        email,
+        created_time,
+        dbt_valid_from   AS effective_from,
+        dbt_valid_to     AS effective_to,
+        CASE WHEN dbt_valid_to IS NULL THEN TRUE ELSE FALSE END AS is_current
+    FROM BANKING.ANALYTICS.customers_snapshot
+)
+
+SELECT * FROM latest
+    )
+
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.dim_customers", "profile_name": "banking_dbt", "target_name": "dev"} */
+06:56:22.956560 [info ]: Finished running [  2.02s] model ANALYSTICS.dim_customers [success]
+06:56:22.957063 [info ]:  Succeeded [  2.12s] model ANALYSTICS.dim_customers (table)
+06:56:26.118937 [debug]: Query executed on node model.banking_dbt.fact_transactions:
+
+    
+        
+            
+            
+            
+            
+        
+    
+
+    
+
+    merge into BANKING.ANALYSTICS.fact_transactions as DBT_INTERNAL_DEST
+        using BANKING.ANALYSTICS.fact_transactions__dbt_tmp as DBT_INTERNAL_SOURCE
+        on ((DBT_INTERNAL_SOURCE.transaction_id = DBT_INTERNAL_DEST.transaction_id))
+
+    
+    when matched then update set
+        "TRANSACTION_ID" = DBT_INTERNAL_SOURCE."TRANSACTION_ID","ACCOUNT_ID" = DBT_INTERNAL_SOURCE."ACCOUNT_ID","CUSTOMER_ID" = DBT_INTERNAL_SOURCE."CUSTOMER_ID","AMOUNT" = DBT_INTERNAL_SOURCE."AMOUNT","RELATED_ACCOUNT_ID" = DBT_INTERNAL_SOURCE."RELATED_ACCOUNT_ID","STATUS" = DBT_INTERNAL_SOURCE."STATUS","TRANSACTION_TYPE" = DBT_INTERNAL_SOURCE."TRANSACTION_TYPE","TRANSACTION_TIME" = DBT_INTERNAL_SOURCE."TRANSACTION_TIME","LOAD_TIMESTAMP" = DBT_INTERNAL_SOURCE."LOAD_TIMESTAMP"
+    
+
+    when not matched then insert
+        ("TRANSACTION_ID", "ACCOUNT_ID", "CUSTOMER_ID", "AMOUNT", "RELATED_ACCOUNT_ID", "STATUS", "TRANSACTION_TYPE", "TRANSACTION_TIME", "LOAD_TIMESTAMP")
+    values
+        ("TRANSACTION_ID", "ACCOUNT_ID", "CUSTOMER_ID", "AMOUNT", "RELATED_ACCOUNT_ID", "STATUS", "TRANSACTION_TYPE", "TRANSACTION_TIME", "LOAD_TIMESTAMP")
+
+
+/* {"app": "dbt", "dbt_version": "2.0.0", "node_id": "model.banking_dbt.fact_transactions", "profile_name": "banking_dbt", "target_name": "dev"} */
+06:56:27.122047 [error]: [DbSyntaxInvalid (dbt1302)]: Database Error in model fact_transactions (target\run\banking_dbt\models\marts\facts\fact_transactions.sql)
+  [Snowflake] 100090 (42P18): Duplicate row detected during DML action
+  Row Values: ["3", "7", "5", 805.19, NULL, "COMPLETED", "DEPOSIT", 1784697774203408000, 1786538589098000000]
+  (in run\banking_dbt\models/marts/facts\fact_transactions.sql)
+06:56:27.122176 [info ]: Finished running [  5.85s] model ANALYSTICS.fact_transactions [error]
+06:56:27.122597 [info ]: Finished running [  7.22s] (6 nodes, 0 skipped, 1 errors)
+06:56:27.123394 [info ]:     Failed [  5.86s] model ANALYSTICS.fact_transactions (incremental)
+06:56:27.403153 [info ]: 
+==================== Execution Summary =====================
+Finished 'run' with 2 warnings and 1 error for target 'dev' [15.3s]
+Processed: 6 models
+Summary: 6 total | 5 success | 1 error
+[0m04:39:33.651223 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7659d31491c0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7659d31ce540>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7659d3db60f0>]}
+
+
+============================== 04:39:33.703320 | b706143d-1d41-4390-827c-a5c48a283935 ==============================
+[0m04:39:33.703320 [info ] [MainThread]: Running with dbt=1.11.12
+[0m04:39:33.705033 [debug] [MainThread]: running dbt with arguments {'send_anonymous_usage_stats': 'True', 'printer_width': '80', 'empty': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'introspect': 'True', 'indirect_selection': 'eager', 'use_colors': 'True', 'write_json': 'True', 'target_path': 'None', 'warn_error': 'None', 'version_check': 'True', 'debug': 'False', 'use_experimental_parser': 'False', 'quiet': 'False', 'log_cache_events': 'False', 'cache_selected_only': 'False', 'invocation_command': 'dbt snapshot --profiles-dir /home/airflow/.dbt', 'no_print': 'None', 'profiles_dir': '/home/airflow/.dbt', 'static_parser': 'True', 'partial_parse': 'True', 'log_format': 'default', 'log_path': '/opt/airflow/banking_dbt/logs', 'fail_fast': 'False'}
+[0m04:39:33.712631 [error] [MainThread]: Encountered an error:
+Runtime Error
+  Could not find profile named 'banking_dbt'
+[0m04:39:33.776558 [debug] [MainThread]: Resource report: {"command_name": "snapshot", "command_success": false, "command_wall_clock_time": 0.28826815, "process_in_blocks": "30711", "process_kernel_time": 8.628096, "process_mem_max_rss": "106552", "process_out_blocks": "1264", "process_user_time": 8.948645}
+[0m04:39:33.779002 [debug] [MainThread]: Command `dbt snapshot` failed at 04:39:33.778776 after 0.35 seconds
+[0m04:39:33.780794 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7659d5a6fbf0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7659d3b35430>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7659d3db6b10>]}
+[0m04:39:33.782406 [debug] [MainThread]: Flushing usage events
+[0m04:39:37.546133 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m04:39:46.384190 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e85b88e95e0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e85b9f74590>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e85b84463c0>]}
+
+
+============================== 04:39:46.391472 | 4b2fc5de-9f90-409b-ad17-9e69f2d20585 ==============================
+[0m04:39:46.391472 [info ] [MainThread]: Running with dbt=1.11.12
+[0m04:39:46.393133 [debug] [MainThread]: running dbt with arguments {'send_anonymous_usage_stats': 'True', 'use_experimental_parser': 'False', 'invocation_command': 'dbt run --select marts --profiles-dir /home/airflow/.dbt', 'static_parser': 'True', 'no_print': 'None', 'log_path': '/opt/airflow/banking_dbt/logs', 'profiles_dir': '/home/airflow/.dbt', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'target_path': 'None', 'cache_selected_only': 'False', 'write_json': 'True', 'warn_error': 'None', 'printer_width': '80', 'empty': 'False', 'fail_fast': 'False', 'introspect': 'True', 'partial_parse': 'True', 'version_check': 'True', 'debug': 'False', 'quiet': 'False', 'use_colors': 'True', 'log_format': 'default', 'log_cache_events': 'False', 'indirect_selection': 'eager'}
+[0m04:39:46.399835 [error] [MainThread]: Encountered an error:
+Runtime Error
+  Could not find profile named 'banking_dbt'
+[0m04:39:46.402069 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 0.09303059, "process_in_blocks": "7", "process_kernel_time": 0.507528, "process_mem_max_rss": "106084", "process_out_blocks": "0", "process_user_time": 3.434055}
+[0m04:39:46.403776 [debug] [MainThread]: Command `dbt run` failed at 04:39:46.403611 after 0.09 seconds
+[0m04:39:46.405290 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e85b819f440>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e85b747ce90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e85b76fd7f0>]}
+[0m04:39:46.406762 [debug] [MainThread]: Flushing usage events
+[0m04:39:47.636558 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m04:39:58.038302 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x732f79f40290>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x732f7b7dc5f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x732f79f40800>]}
+
+
+============================== 04:39:58.045651 | 9df31c91-f03d-43a9-8cfd-291d4ba3d239 ==============================
+[0m04:39:58.045651 [info ] [MainThread]: Running with dbt=1.11.12
+[0m04:39:58.047631 [debug] [MainThread]: running dbt with arguments {'cache_selected_only': 'False', 'printer_width': '80', 'quiet': 'False', 'empty': 'False', 'no_print': 'None', 'target_path': 'None', 'log_path': '/opt/airflow/banking_dbt/logs', 'version_check': 'True', 'indirect_selection': 'eager', 'write_json': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'use_experimental_parser': 'False', 'partial_parse': 'True', 'profiles_dir': '/home/airflow/.dbt', 'debug': 'False', 'fail_fast': 'False', 'warn_error': 'None', 'static_parser': 'True', 'invocation_command': 'dbt snapshot --profiles-dir /home/airflow/.dbt', 'log_format': 'default', 'log_cache_events': 'False', 'use_colors': 'True', 'send_anonymous_usage_stats': 'True', 'introspect': 'True'}
+[0m04:39:58.053523 [error] [MainThread]: Encountered an error:
+Runtime Error
+  Could not find profile named 'banking_dbt'
+[0m04:39:58.055753 [debug] [MainThread]: Resource report: {"command_name": "snapshot", "command_success": false, "command_wall_clock_time": 0.10114904, "process_in_blocks": "7", "process_kernel_time": 0.479858, "process_mem_max_rss": "106184", "process_out_blocks": "0", "process_user_time": 3.506169}
+[0m04:39:58.057290 [debug] [MainThread]: Command `dbt snapshot` failed at 04:39:58.057159 after 0.10 seconds
+[0m04:39:58.058503 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x732f7adef4a0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x732f7a162f60>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x732f79f41520>]}
+[0m04:39:58.059742 [debug] [MainThread]: Flushing usage events
+[0m04:39:59.339094 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m04:40:14.402669 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x74f9259ec380>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x74f924906f60>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x74f924f8b140>]}
+
+
+============================== 04:40:14.411024 | 0e48988d-52af-434b-9fb0-e8ffa5f20515 ==============================
+[0m04:40:14.411024 [info ] [MainThread]: Running with dbt=1.11.12
+[0m04:40:14.412575 [debug] [MainThread]: running dbt with arguments {'log_path': '/opt/airflow/banking_dbt/logs', 'use_experimental_parser': 'False', 'warn_error': 'None', 'log_cache_events': 'False', 'log_format': 'default', 'indirect_selection': 'eager', 'static_parser': 'True', 'fail_fast': 'False', 'profiles_dir': '/home/airflow/.dbt', 'quiet': 'False', 'invocation_command': 'dbt run --select marts --profiles-dir /home/airflow/.dbt', 'printer_width': '80', 'use_colors': 'True', 'send_anonymous_usage_stats': 'True', 'write_json': 'True', 'no_print': 'None', 'introspect': 'True', 'empty': 'False', 'cache_selected_only': 'False', 'debug': 'False', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'partial_parse': 'True', 'version_check': 'True'}
+[0m04:40:14.419163 [error] [MainThread]: Encountered an error:
+Runtime Error
+  Could not find profile named 'banking_dbt'
+[0m04:40:14.421166 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 0.30750814, "process_in_blocks": "7", "process_kernel_time": 0.62419, "process_mem_max_rss": "106328", "process_out_blocks": "0", "process_user_time": 4.909681}
+[0m04:40:14.422610 [debug] [MainThread]: Command `dbt run` failed at 04:40:14.422490 after 0.31 seconds
+[0m04:40:14.423971 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x74f925127e00>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x74f924aeb4d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x74f923e8a150>]}
+[0m04:40:14.425408 [debug] [MainThread]: Flushing usage events
+[0m04:40:25.204762 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m04:43:32.424797 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7731de215fd0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7731dff4c2c0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7731dd44f0b0>]}
+
+
+============================== 04:43:32.563741 | 399c5fa8-fb47-4a3e-bc61-570d23a4bd46 ==============================
+[0m04:43:32.563741 [info ] [MainThread]: Running with dbt=1.11.12
+[0m04:43:32.565609 [debug] [MainThread]: running dbt with arguments {'introspect': 'True', 'use_colors': 'True', 'invocation_command': 'dbt run --select marts --profiles-dir /home/airflow/.dbt', 'log_cache_events': 'False', 'printer_width': '80', 'warn_error': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'profiles_dir': '/home/airflow/.dbt', 'target_path': 'None', 'empty': 'False', 'cache_selected_only': 'False', 'log_path': '/opt/airflow/banking_dbt/logs', 'fail_fast': 'False', 'send_anonymous_usage_stats': 'True', 'quiet': 'False', 'partial_parse': 'True', 'indirect_selection': 'eager', 'write_json': 'True', 'debug': 'False', 'static_parser': 'True', 'use_experimental_parser': 'False', 'log_format': 'default', 'version_check': 'True', 'no_print': 'None'}
+[0m04:43:32.572570 [error] [MainThread]: Encountered an error:
+Runtime Error
+  Could not find profile named 'banking_dbt'
+[0m04:43:32.575074 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 0.3356546, "process_in_blocks": "7", "process_kernel_time": 0.314811, "process_mem_max_rss": "106364", "process_out_blocks": "0", "process_user_time": 3.836425}
+[0m04:43:32.576844 [debug] [MainThread]: Command `dbt run` failed at 04:43:32.576652 after 0.34 seconds
+[0m04:43:32.578309 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7731de215fd0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7731dd419130>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7731dd5854c0>]}
+[0m04:43:32.580170 [debug] [MainThread]: Flushing usage events
+[0m04:43:34.476792 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m04:43:41.397899 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d8f5af7eff0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d8f5cd41c70>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d8f5bcf00e0>]}
+
+
+============================== 04:43:41.405766 | 5383afdb-2662-43fc-8450-f89ff1d3ce8a ==============================
+[0m04:43:41.405766 [info ] [MainThread]: Running with dbt=1.11.12
+[0m04:43:41.407527 [debug] [MainThread]: running dbt with arguments {'quiet': 'False', 'static_parser': 'True', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'log_path': '/opt/airflow/banking_dbt/logs', 'warn_error': 'None', 'log_format': 'default', 'target_path': 'None', 'profiles_dir': '/home/airflow/.dbt', 'printer_width': '80', 'version_check': 'True', 'debug': 'False', 'no_print': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'send_anonymous_usage_stats': 'True', 'introspect': 'True', 'partial_parse': 'True', 'empty': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'invocation_command': 'dbt snapshot --profiles-dir /home/airflow/.dbt', 'write_json': 'True', 'cache_selected_only': 'False', 'fail_fast': 'False'}
+[0m04:43:41.415500 [error] [MainThread]: Encountered an error:
+Runtime Error
+  Could not find profile named 'banking_dbt'
+[0m04:43:41.417749 [debug] [MainThread]: Resource report: {"command_name": "snapshot", "command_success": false, "command_wall_clock_time": 0.09593409, "process_in_blocks": "7", "process_kernel_time": 0.242298, "process_mem_max_rss": "106324", "process_out_blocks": "0", "process_user_time": 2.35197}
+[0m04:43:41.419522 [debug] [MainThread]: Command `dbt snapshot` failed at 04:43:41.419371 after 0.10 seconds
+[0m04:43:41.421045 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d8f59f02c30>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d8f59c867b0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7d8f59c4bb90>]}
+[0m04:43:41.422567 [debug] [MainThread]: Flushing usage events
+[0m04:43:42.764243 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m04:43:50.581932 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x795ab6647d10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x795ab7b79e20>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x795ab5370a70>]}
+
+
+============================== 04:43:50.589472 | 9b50a6ec-017f-4725-8789-51ad82a97992 ==============================
+[0m04:43:50.589472 [info ] [MainThread]: Running with dbt=1.11.12
+[0m04:43:50.591222 [debug] [MainThread]: running dbt with arguments {'warn_error': 'None', 'log_path': '/opt/airflow/banking_dbt/logs', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'cache_selected_only': 'False', 'printer_width': '80', 'log_cache_events': 'False', 'log_format': 'default', 'use_experimental_parser': 'False', 'quiet': 'False', 'introspect': 'True', 'partial_parse': 'True', 'use_colors': 'True', 'invocation_command': 'dbt snapshot --profiles-dir /home/airflow/.dbt', 'version_check': 'True', 'profiles_dir': '/home/airflow/.dbt', 'static_parser': 'True', 'no_print': 'None', 'target_path': 'None', 'fail_fast': 'False', 'empty': 'False', 'send_anonymous_usage_stats': 'True', 'indirect_selection': 'eager', 'debug': 'False', 'write_json': 'True'}
+[0m04:43:50.598755 [error] [MainThread]: Encountered an error:
+Runtime Error
+  Could not find profile named 'banking_dbt'
+[0m04:43:50.600965 [debug] [MainThread]: Resource report: {"command_name": "snapshot", "command_success": false, "command_wall_clock_time": 0.098280475, "process_in_blocks": "7", "process_kernel_time": 0.314136, "process_mem_max_rss": "106212", "process_out_blocks": "0", "process_user_time": 2.434555}
+[0m04:43:50.602471 [debug] [MainThread]: Command `dbt snapshot` failed at 04:43:50.602335 after 0.10 seconds
+[0m04:43:50.603844 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x795ab62cef60>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x795ab660ade0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x795ab51a0fe0>]}
+[0m04:43:50.605209 [debug] [MainThread]: Flushing usage events
+[0m04:43:52.744615 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m04:43:59.464446 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x73e6f4d02f00>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x73e6f5dc35c0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x73e6f6751ac0>]}
+
+
+============================== 04:43:59.525006 | 889eb2e1-fbb5-4341-aa1b-9abb250e1cf9 ==============================
+[0m04:43:59.525006 [info ] [MainThread]: Running with dbt=1.11.12
+[0m04:43:59.526743 [debug] [MainThread]: running dbt with arguments {'no_print': 'None', 'printer_width': '80', 'use_colors': 'True', 'warn_error': 'None', 'log_path': '/opt/airflow/banking_dbt/logs', 'static_parser': 'True', 'write_json': 'True', 'cache_selected_only': 'False', 'fail_fast': 'False', 'indirect_selection': 'eager', 'version_check': 'True', 'debug': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'introspect': 'True', 'use_experimental_parser': 'False', 'quiet': 'False', 'profiles_dir': '/home/airflow/.dbt', 'log_format': 'default', 'target_path': 'None', 'send_anonymous_usage_stats': 'True', 'empty': 'False', 'partial_parse': 'True', 'log_cache_events': 'False', 'invocation_command': 'dbt run --select marts --profiles-dir /home/airflow/.dbt'}
+[0m04:43:59.533482 [error] [MainThread]: Encountered an error:
+Runtime Error
+  Could not find profile named 'banking_dbt'
+[0m04:43:59.535620 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 0.15207124, "process_in_blocks": "7", "process_kernel_time": 0.19943, "process_mem_max_rss": "106152", "process_out_blocks": "0", "process_user_time": 2.357705}
+[0m04:43:59.537181 [debug] [MainThread]: Command `dbt run` failed at 04:43:59.537048 after 0.15 seconds
+[0m04:43:59.538395 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x73e6f5588140>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x73e6f3ee2330>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x73e6f3ee1eb0>]}
+[0m04:43:59.539646 [debug] [MainThread]: Flushing usage events
+[0m04:44:00.759511 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m04:59:39.948809 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x79c9347fd1c0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x79c934654560>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x79c936730e00>]}
+
+
+============================== 04:59:40.002851 | 5a449c78-6b49-4ad4-9e48-ed75af9fd7a4 ==============================
+[0m04:59:40.002851 [info ] [MainThread]: Running with dbt=1.11.12
+[0m04:59:40.006788 [debug] [MainThread]: running dbt with arguments {'quiet': 'False', 'log_path': '/opt/airflow/banking_dbt/logs', 'empty': 'False', 'log_cache_events': 'False', 'invocation_command': 'dbt snapshot --profiles-dir /home/airflow/.dbt', 'cache_selected_only': 'False', 'use_experimental_parser': 'False', 'indirect_selection': 'eager', 'debug': 'False', 'write_json': 'True', 'partial_parse': 'True', 'introspect': 'True', 'use_colors': 'True', 'no_print': 'None', 'fail_fast': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'send_anonymous_usage_stats': 'True', 'static_parser': 'True', 'log_format': 'default', 'profiles_dir': '/home/airflow/.dbt', 'version_check': 'True', 'printer_width': '80', 'target_path': 'None', 'warn_error': 'None'}
+[0m04:59:40.018634 [error] [MainThread]: Encountered an error:
+Runtime Error
+  Could not find profile named 'banking_dbt'
+[0m04:59:40.040963 [debug] [MainThread]: Resource report: {"command_name": "snapshot", "command_success": false, "command_wall_clock_time": 0.24364875, "process_in_blocks": "223", "process_kernel_time": 6.885411, "process_mem_max_rss": "106268", "process_out_blocks": "0", "process_user_time": 10.989575}
+[0m04:59:40.043899 [debug] [MainThread]: Command `dbt snapshot` failed at 04:59:40.043670 after 0.26 seconds
+[0m04:59:40.046393 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x79c93369c740>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x79c934a26e40>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x79c9334c62a0>]}
+[0m04:59:40.049011 [debug] [MainThread]: Flushing usage events
+[0m04:59:42.467405 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m04:59:55.059999 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x72f29f5a6840>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x72f29fc0bcb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x72f29fa1d730>]}
+
+
+============================== 04:59:55.080737 | 96155cb5-9828-472b-9732-047d0f15214e ==============================
+[0m04:59:55.080737 [info ] [MainThread]: Running with dbt=1.11.12
+[0m04:59:55.084859 [debug] [MainThread]: running dbt with arguments {'warn_error': 'None', 'empty': 'False', 'profiles_dir': '/home/airflow/.dbt', 'invocation_command': 'dbt run --select marts --profiles-dir /home/airflow/.dbt', 'cache_selected_only': 'False', 'no_print': 'None', 'static_parser': 'True', 'target_path': 'None', 'version_check': 'True', 'quiet': 'False', 'introspect': 'True', 'write_json': 'True', 'use_colors': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'log_format': 'default', 'indirect_selection': 'eager', 'debug': 'False', 'partial_parse': 'True', 'log_cache_events': 'False', 'send_anonymous_usage_stats': 'True', 'fail_fast': 'False', 'log_path': '/opt/airflow/banking_dbt/logs', 'printer_width': '80', 'use_experimental_parser': 'False'}
+[0m04:59:55.102079 [error] [MainThread]: Encountered an error:
+Runtime Error
+  Could not find profile named 'banking_dbt'
+[0m04:59:55.108049 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 0.23495828, "process_in_blocks": "7", "process_kernel_time": 0.493263, "process_mem_max_rss": "106160", "process_out_blocks": "0", "process_user_time": 4.331601}
+[0m04:59:55.113492 [debug] [MainThread]: Command `dbt run` failed at 04:59:55.113109 after 0.24 seconds
+[0m04:59:55.116969 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x72f29f6d9880>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x72f29e8b7dd0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x72f29f7f3680>]}
+[0m04:59:55.120592 [debug] [MainThread]: Flushing usage events
+[0m04:59:56.176655 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m05:00:55.698623 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e7b8ae59d00>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e7b8af5d2b0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e7b8ccaa600>]}
+
+
+============================== 05:00:55.713276 | 0dfdcbff-0238-4cb9-981d-8e20b6680c36 ==============================
+[0m05:00:55.713276 [info ] [MainThread]: Running with dbt=1.11.12
+[0m05:00:55.716355 [debug] [MainThread]: running dbt with arguments {'static_parser': 'True', 'log_path': '/opt/airflow/banking_dbt/logs', 'cache_selected_only': 'False', 'warn_error': 'None', 'no_print': 'None', 'log_format': 'default', 'write_json': 'True', 'version_check': 'True', 'profiles_dir': '/home/airflow/.dbt', 'quiet': 'False', 'log_cache_events': 'False', 'printer_width': '80', 'debug': 'False', 'use_experimental_parser': 'False', 'invocation_command': 'dbt snapshot --profiles-dir /home/airflow/.dbt', 'indirect_selection': 'eager', 'empty': 'False', 'introspect': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'use_colors': 'True', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True', 'fail_fast': 'False'}
+[0m05:00:55.727593 [error] [MainThread]: Encountered an error:
+Runtime Error
+  Could not find profile named 'banking_dbt'
+[0m05:00:55.731247 [debug] [MainThread]: Resource report: {"command_name": "snapshot", "command_success": false, "command_wall_clock_time": 0.25160083, "process_in_blocks": "7", "process_kernel_time": 0.550751, "process_mem_max_rss": "106328", "process_out_blocks": "0", "process_user_time": 4.349189}
+[0m05:00:55.734021 [debug] [MainThread]: Command `dbt snapshot` failed at 05:00:55.733778 after 0.25 seconds
+[0m05:00:55.736530 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e7b8aede420>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e7b89e5a4e0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e7b8b485dc0>]}
+[0m05:00:55.738893 [debug] [MainThread]: Flushing usage events
+[0m05:00:57.195816 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m05:01:13.654320 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e2c1d94c170>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e2c1be23f80>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e2c1cb7db80>]}
+
+
+============================== 05:01:13.667687 | 59a5018b-092a-4645-8ab1-58d5d93e3e26 ==============================
+[0m05:01:13.667687 [info ] [MainThread]: Running with dbt=1.11.12
+[0m05:01:13.670741 [debug] [MainThread]: running dbt with arguments {'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'use_colors': 'True', 'fail_fast': 'False', 'log_format': 'default', 'indirect_selection': 'eager', 'introspect': 'True', 'log_cache_events': 'False', 'static_parser': 'True', 'quiet': 'False', 'partial_parse': 'True', 'use_experimental_parser': 'False', 'log_path': '/opt/airflow/banking_dbt/logs', 'send_anonymous_usage_stats': 'True', 'profiles_dir': '/home/airflow/.dbt', 'empty': 'False', 'no_print': 'None', 'version_check': 'True', 'cache_selected_only': 'False', 'target_path': 'None', 'invocation_command': 'dbt run --select marts --profiles-dir /home/airflow/.dbt', 'debug': 'False', 'warn_error': 'None', 'printer_width': '80', 'write_json': 'True'}
+[0m05:01:13.682516 [error] [MainThread]: Encountered an error:
+Runtime Error
+  Could not find profile named 'banking_dbt'
+[0m05:01:13.686236 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 0.17859133, "process_in_blocks": "7", "process_kernel_time": 0.554134, "process_mem_max_rss": "106384", "process_out_blocks": "0", "process_user_time": 5.266818}
+[0m05:01:13.688907 [debug] [MainThread]: Command `dbt run` failed at 05:01:13.688653 after 0.18 seconds
+[0m05:01:13.691613 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e2c1bad4f20>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e2c1bb563f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7e2c1b9209e0>]}
+[0m05:01:13.694330 [debug] [MainThread]: Flushing usage events
+[0m05:01:15.036546 [debug] [MainThread]: An error was encountered while trying to flush usage events
